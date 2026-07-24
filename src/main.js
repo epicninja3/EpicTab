@@ -660,6 +660,8 @@ async function getFlight(flightNumber) {
     console.log(flight);
     
     document.getElementById("flightinfo").style.visibility = "visible";
+    document.getElementById("flightinfo").style.height = "190px";
+    document.getElementById("flightContainer").style.height = "260px";
     
     aircraftmodel.innerHTML = `${aircraft}`;
     airlines.innerHTML = `${flight.airline_name || "Unavailable"}`;
