@@ -86,7 +86,7 @@ function showBookmarks() {
     
     deleteBtn.classList.add('deleteBtn');
     const deleteimg = document.createElement('img');
-    deleteimg.src = "assets/red-trash-can-icon.png";
+    deleteimg.src = `${import.meta.env.BASE_URL}assets/red-trash-can-icon.png`;
 
     // deleteimg
 
