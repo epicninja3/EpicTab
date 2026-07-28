@@ -1,33 +1,33 @@
 import './style.css'
 
-function screenClose (element){
-    element.style.display = "none";
+function screenClose(element) {
+  element.style.display = "none";
 
 }
-function screenOpen(element){
+function screenOpen(element) {
   element.style.display = "flex";
-//   element.classList.remove('fade');
+  //   element.classList.remove('fade');
 
 }
 
 // ----------
 // Time
 // ----------
-function updateTime(){
+function updateTime() {
   const now = new Date();
   const date = now.toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric"
+    weekday: "long",
+    month: "long",
+    day: "numeric"
   });
-  const time = now.toLocaleString("en-US",{
+  const time = now.toLocaleString("en-US", {
     hour: "numeric",
     minute: "2-digit"
 
   });
-    // var currentTime = new Date().toLocaleString();
-    // var timeText = document.querySelector("#timeElement");
-    // timeText.innerHTML = currentTime
+  // var currentTime = new Date().toLocaleString();
+  // var timeText = document.querySelector("#timeElement");
+  // timeText.innerHTML = currentTime
   document.querySelector("#timeElement").innerHTML = `${time}`
   document.querySelector("#date").innerHTML = `${date}`
 }
@@ -41,7 +41,7 @@ setInterval(updateTime, 1000);
 
 const bookmarkMaker = document.querySelector("#bookmarkMaker");
 const bookmarkCreate = document.querySelector("#createBook");
-const urlInput = document.querySelector("#urlinput"); 
+const urlInput = document.querySelector("#urlinput");
 const nameInput = document.querySelector("#nameInput");
 const submitBk = document.querySelector("#addmark");
 const bookmarksContainer = document.querySelector("#bookmarks"); // Targets your buttons div
@@ -58,10 +58,10 @@ let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
 // let bookmarks = [];
 // localStorage.removeItem("bookmarks");
 
-bookmarkCreate.addEventListener('click', function(){
+bookmarkCreate.addEventListener('click', function () {
   screenOpen(bookmarkMaker);
 });
-cancelBook.addEventListener('click', function(){
+cancelBook.addEventListener('click', function () {
   screenClose(bookmarkMaker);
 });
 
@@ -71,19 +71,19 @@ function showBookmarks() {
   const oldLinks = bookmarksContainer.querySelectorAll('.dynamic-bookmark');
   oldLinks.forEach(link => link.remove());
 
-  
+
   bookmarks.forEach((item, index) => {
-    
+
     const newButton = document.createElement('a');
     newButton.href = item.url;
     newButton.target = "_blank";
-    
+
     const text = document.createElement("span");
     text.textContent = item.name;
     text.style.fontFamily = "Nunito";
     text.style.fontSize = "20px";
     const deleteBtn = document.createElement('button');
-    
+
     deleteBtn.classList.add('deleteBtn');
     const deleteimg = document.createElement('img');
     deleteimg.src = `${import.meta.env.BASE_URL}assets/red-trash-can-icon.png`;
@@ -93,7 +93,7 @@ function showBookmarks() {
     deleteBtn.appendChild(deleteimg);
 
 
-    newButton.classList.add('dynamic-bookmark'); 
+    newButton.classList.add('dynamic-bookmark');
     const img = document.createElement("img");
 
     img.classList.add('bookimg');
@@ -103,7 +103,7 @@ function showBookmarks() {
     // const text = document.createElement("span");
     // text.textContent = item.name;
 
-    deleteBtn.addEventListener('click', function(e){
+    deleteBtn.addEventListener('click', function (e) {
       e.preventDefault(); // doesnt open bookmark
       e.stopPropagation();
       bookmarks.splice(index, 1);
@@ -119,9 +119,9 @@ function showBookmarks() {
 }
 
 
-submitBk.addEventListener('click', function(e){
- 
-  if (!nameInput.value || !urlInput.value){
+submitBk.addEventListener('click', function (e) {
+
+  if (!nameInput.value || !urlInput.value) {
     return alert("Please fill both fields!");
   }
   let urla = urlInput.value.trim();
@@ -134,15 +134,15 @@ submitBk.addEventListener('click', function(e){
     url: urla
   };
 
-  bookmarks.push(newBook); 
-  localStorage.setItem('bookmarks', JSON.stringify(bookmarks)); 
+  bookmarks.push(newBook);
+  localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
   // console.log(localStorage.getItem("bookmarks"));
 
 
-  showBookmarks(); 
-  screenClose(bookmarkMaker); 
-  
-  
+  showBookmarks();
+  screenClose(bookmarkMaker);
+
+
   nameInput.value = "";
   urlInput.value = "";
 });
@@ -161,10 +161,10 @@ const API_KEY = import.meta.env.VITE_NASA_API_KEY;
 fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
   .then(response => response.json())
   .then(data => {
-      const apodurl = data.url;
-      apodDisplay.style.backgroundImage = `url(${apodurl})`;
-      apodinfo.innerHTML = data.explanation;
-      apodTitle.innerHTML = data.title;
+    const apodurl = data.url;
+    apodDisplay.style.backgroundImage = `url(${apodurl})`;
+    apodinfo.innerHTML = data.explanation;
+    apodTitle.innerHTML = data.title;
   })
   .catch(error => {
     console.error(error);
@@ -187,87 +187,84 @@ let timeLeft = 0;
 // let resume = true;
 let isPaused = false;
 
-function startTime(){
+function startTime() {
   let h = parseInt(hour.value) || 0;
   let m = parseInt(min.value) || 0;
   let s = parseInt(sec.value) || 0;
 
+  if (timeLeft === 0) {
+    totalSeconds = (h * 3600) + (m * 60) + (s)
+    timeLeft = totalSeconds;
+  }
 
-  totalSeconds = (h * 3600) + (m * 60) + (s)
 
-  //this basically converts everything back into correct time format so 100sec becomes 1 min 40 sec
-  h = Math.floor(totalSeconds / 3600);
-  m = Math.floor((totalSeconds % 3600) / 60);
-  s = totalSeconds % 60;
 
- 
   hour.value = h;
   min.value = m;
   sec.value = s;
-  timeLeft = totalSeconds;
-  
-  if (totalSeconds == 0){
+
+
+  if (totalSeconds == 0) {
     bar.style.width = "0%";
     alert("Please enter a value in at least on of the input fields!");
     console.log("Please enter a value.");
-    
+
     return;
   }
-  else if (totalSeconds > 0){
-    if (!isPaused){
+  else if (totalSeconds > 0) {
+    if (!isPaused) {
       clearInterval(countdown)
-      countdown = setInterval(() =>{
-        
-        s--;
+      countdown = setInterval(() => {
+
+        // s--;
         timeLeft--;
         var percent = (timeLeft / totalSeconds) * 100;
         bar.style.width = percent + "%";
-        if (percent == 0){
+        if (percent == 0) {
           bar.style.width = "0%";
-          
+
         };
-        // sec - 1;
-        if (s < 0){
-          m--;
-          s = 59;
-          // min -1
-        };
-        if (m < 0){
-          h--;
-          m = 59;
-          // hour - 1
-        };
+
+        //this basically converts everything back into correct time format so 100sec becomes 1 min 40 sec
+        h = Math.floor(timeLeft / 3600);
+        m = Math.floor((timeLeft % 3600) / 60);
+        s = timeLeft % 60;
+
         hour.value = h;
         min.value = m;
         sec.value = s;
 
-        if (h === 0 && m === 0 && s === 0){
+        if (h === 0 && m === 0 && s === 0) {
           clearInterval(countdown);
-          console.log("done");
+
         };
 
       }, 1000);
-    } else if (isPaused){
+    } else if (isPaused) {
       console.log("paused")
     }
   };
 };
 
 
-start.addEventListener('click', function(){
-  bar.style.width = "100%";
-  
+start.addEventListener('click', function () {
+  // bar.style.width = "100%";
+
   isPaused = false;
   startTime();
 });
-reset.addEventListener('click', function(){
+reset.addEventListener('click', function () {
   clearInterval(countdown);
+  totalSeconds = 0;
+  timeLeft = 0;
+  isPaused = false;
   hour.value = 0;
   min.value = 0;
   sec.value = 0;
-  bar.style.width = "0%";
+  bar.style.width = "100%";
 });
-pause.addEventListener('click', function(){
+pause.addEventListener('click', function () {
+  clearInterval(countdown);
   isPaused = true;
 })
 
@@ -275,128 +272,128 @@ pause.addEventListener('click', function(){
 // Weather Stuff
 // -------------
 
-async function getWeather(){
-    navigator.geolocation.getCurrentPosition(success, error);
+async function getWeather() {
+  navigator.geolocation.getCurrentPosition(success, error);
 
-    async function success(position) {
-      try {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        // Build weather URL
-        const weatherUrl =
-            `https://api.open-meteo.com/v1/forecast?` +
-            `latitude=${lat}` +
-            `&longitude=${lon}` +
-            `&current=temperature_2m,wind_speed_10m,is_day,wind_direction_10m,precipitation,rain,showers,snowfall,cloud_cover,weather_code` +
-            `&temperature_unit=fahrenheit` +
-            `&wind_speed_unit=mph` +
-            `&timezone=auto` +
-            `&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,weather_code` +
-            `&models=ecmwf_ifs`;
+  async function success(position) {
+    try {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      // Build weather URL
+      const weatherUrl =
+        `https://api.open-meteo.com/v1/forecast?` +
+        `latitude=${lat}` +
+        `&longitude=${lon}` +
+        `&current=temperature_2m,wind_speed_10m,is_day,wind_direction_10m,precipitation,rain,showers,snowfall,cloud_cover,weather_code` +
+        `&temperature_unit=fahrenheit` +
+        `&wind_speed_unit=mph` +
+        `&timezone=auto` +
+        `&daily=sunrise,sunset,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,weather_code` +
+        `&models=ecmwf_ifs`;
 
-        const weatherResponse = await fetch(weatherUrl);
-        const weatherData = await weatherResponse.json();
-        const sunrise = weatherData.daily.sunrise[0].split("T")[1];
-        const sunset = weatherData.daily.sunset[0].split("T")[1];
-        const temperature = weatherData.current.temperature_2m;
-        const windspeed = weatherData.current.wind_speed_10m;
-        const high = weatherData.daily.temperature_2m_max[0];
-        const low = weatherData.daily.temperature_2m_min[0];
-        const winddirect = weatherData.current.wind_direction_10m;
-        const perceptprob = weatherData.daily.precipitation_probability_max[0];
-        const perceptprobtmr = weatherData.daily.precipitation_probability_max[1];
-        const rainsum = weatherData.daily.precipitation_sum[0];
-        let day ="";
-        let dayhigh = 0;
-        const codeb = weatherData.current.weather_code;
-        const isDay = weatherData.current.is_day;
-        const iconb = weatherIcon(codeb, isDay);
-        const localTime = new Date().toLocaleTimeString("en-US", {
-          timeZone: weatherData.timezone,
-          hour: "numeric",
-          minute: "2-digit",
-          hour12: true
-        });
-        
-    function weatherIcon(code, is_day){
-      switch(code){
-        case 0:
-          return is_day
-          ? "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/clear-day.svg"
-          : "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/clear-night.svg";
-        case 1:
-        case 2:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/mostly-clear-day.svg";
-        case 3:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/overcast.svg";
-        case 45:
-        case 48:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/fog.svg";
-        case 51:
-        case 53:
-        case 55:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/drizzle.svg";
-        case 56:
-        case 57:
-        case 66:
-        case 67:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/sleet.svg";
-        case 61:
-        case 63:
-        case 65:
-        case 80:
-        case 81:
-        case 82:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/rain.svg";
-        case 71:
-        case 73:
-        case 75:
-        case 77:
-        case 85:
-        case 86:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/snow.svg";
-        case 95:
-        case 96:
-        case 99:
-          return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/thunderstorms-overcast-rain.svg";
-        default:
-          return "..."
+      const weatherResponse = await fetch(weatherUrl);
+      const weatherData = await weatherResponse.json();
+      const sunrise = weatherData.daily.sunrise[0].split("T")[1];
+      const sunset = weatherData.daily.sunset[0].split("T")[1];
+      const temperature = weatherData.current.temperature_2m;
+      const windspeed = weatherData.current.wind_speed_10m;
+      const high = weatherData.daily.temperature_2m_max[0];
+      const low = weatherData.daily.temperature_2m_min[0];
+      const winddirect = weatherData.current.wind_direction_10m;
+      const perceptprob = weatherData.daily.precipitation_probability_max[0];
+      const perceptprobtmr = weatherData.daily.precipitation_probability_max[1];
+      const rainsum = weatherData.daily.precipitation_sum[0];
+      let day = "";
+      let dayhigh = 0;
+      const codeb = weatherData.current.weather_code;
+      const isDay = weatherData.current.is_day;
+      const iconb = weatherIcon(codeb, isDay);
+      const localTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: weatherData.timezone,
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
 
-      }
-    }
+      function weatherIcon(code, is_day) {
+        switch (code) {
+          case 0:
+            return is_day
+              ? "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/clear-day.svg"
+              : "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/clear-night.svg";
+          case 1:
+          case 2:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/mostly-clear-day.svg";
+          case 3:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/overcast.svg";
+          case 45:
+          case 48:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/fog.svg";
+          case 51:
+          case 53:
+          case 55:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/drizzle.svg";
+          case 56:
+          case 57:
+          case 66:
+          case 67:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/sleet.svg";
+          case 61:
+          case 63:
+          case 65:
+          case 80:
+          case 81:
+          case 82:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/rain.svg";
+          case 71:
+          case 73:
+          case 75:
+          case 77:
+          case 85:
+          case 86:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/snow.svg";
+          case 95:
+          case 96:
+          case 99:
+            return "https://cdn.meteocons.com/3.0.0-next.10/svg/fill/thunderstorms-overcast-rain.svg";
+          default:
+            return "..."
 
-
-
-
-    
-          console.log(`Temperature: ${weatherData.current.temperature_2m}°F`);
-          console.log(`Wind: ${weatherData.current.wind_speed_10m} mph`);
-          console.log(`Daytime: ${weatherData.current.is_day ? "Yes" : "No"}`);
-          console.log(`Local Time: ${localTime}`);
-        
-
-          // console.log(`Sunrise: ${sunrise.split("T")[1]}`);
-          // console.log(`Sunset: ${sunset.split("T")[1]}`);
-          document.getElementById("sunrise").innerHTML = `🌅Sunrise: <strong>${sunrise}`;
-          document.getElementById("sunset").innerHTML = `🌇Sunset: <strong>${sunset}`;
-          
-          document.getElementById("currentIcon").src = iconb;
-
-          document.getElementById("currenttemp").innerHTML = `<strong>${temperature}°F`;
-          
-          document.getElementById("maxtemp").innerHTML = `High: ${high}°F`;
-          document.getElementById("mintemp").innerHTML = `Low : ${low}°F`;
-          
-          document.getElementById("perceptprob").innerHTML = `🌧️Chance of Rain: <strong>${perceptprob}%`;
-          
-          document.getElementById("rainsum").innerHTML = `Total Precipitation: <strong>${rainsum}mm`;
-        
-          
-        } catch (error) {
-            console.error(error);
         }
+      }
+
+
+
+
+
+      console.log(`Temperature: ${weatherData.current.temperature_2m}°F`);
+      console.log(`Wind: ${weatherData.current.wind_speed_10m} mph`);
+      console.log(`Daytime: ${weatherData.current.is_day ? "Yes" : "No"}`);
+      console.log(`Local Time: ${localTime}`);
+
+
+      // console.log(`Sunrise: ${sunrise.split("T")[1]}`);
+      // console.log(`Sunset: ${sunset.split("T")[1]}`);
+      document.getElementById("sunrise").innerHTML = `🌅Sunrise: <strong>${sunrise}`;
+      document.getElementById("sunset").innerHTML = `🌇Sunset: <strong>${sunset}`;
+
+      document.getElementById("currentIcon").src = iconb;
+
+      document.getElementById("currenttemp").innerHTML = `<strong>${temperature}°F`;
+
+      document.getElementById("maxtemp").innerHTML = `High: ${high}°F`;
+      document.getElementById("mintemp").innerHTML = `Low : ${low}°F`;
+
+      document.getElementById("perceptprob").innerHTML = `🌧️Chance of Rain: <strong>${perceptprob}%`;
+
+      document.getElementById("rainsum").innerHTML = `Total Precipitation: <strong>${rainsum}mm`;
+
+
+    } catch (error) {
+      console.error(error);
     }
-    
+  }
+
 
 
   function error() {
@@ -439,23 +436,41 @@ const arriveCity = document.getElementById("arrivecity");
 const departtime = document.getElementById("departtime");
 const arrivaltime = document.getElementById("arrivaltime");
 const status = document.getElementById("status");
+const collapse = document.getElementById("collapse");
+let isCollapse = true;
 
-
-findFlight.addEventListener('click', function(){
+findFlight.addEventListener('click', function () {
   const flightNumber = flightInput.value.trim();
 
   if (flightNumber) {
-      getFlight(flightNumber);
+    getFlight(flightNumber);
   }
 });
+
+collapse.addEventListener('click', function () {
+  if (isCollapse == true) {
+    document.getElementById("flightinfo").style.visibility = "hidden";
+    document.getElementById("flightinfo").style.height = "0px";
+    document.getElementById("flightContainer").style.height = "90px";
+    collapse.innerHTML = "Expand";
+    isCollapse = false;
+  }
+  else if (isCollapse == false) {
+    document.getElementById("flightinfo").style.visibility = "visible";
+    document.getElementById("flightinfo").style.height = "190px";
+    document.getElementById("flightContainer").style.height = "270px";
+    collapse.innerHTML = "Collapse";
+    isCollapse = true;
+  }
+})
 
 async function getFlight(flightNumber) {
   try {
 
-    const url = 
-    `https://airlabs.co/api/v9/flight?` +
-    `api_key=${FLIGHT_API_KEY}` +
-    `&flight_iata=${flightNumber}`;
+    const url =
+      `https://airlabs.co/api/v9/flight?` +
+      `api_key=${FLIGHT_API_KEY}` +
+      `&flight_iata=${flightNumber}`;
 
 
     const response = await fetch(url);
@@ -580,82 +595,96 @@ async function getFlight(flightNumber) {
       "GLEX": "Bombardier Global Express",
       "PC12": "Pilatus PC-12"
     };
-    
+
     // const arrival = new Date(flight.arr_time_utc.replace(" ", "T") + "Z");
     const now = new Date();
 
     if (flight.arr_estimated_utc) {
-        const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
+      const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
 
-        const diff = arrivalTime - now;
+      const diff = arrivalTime - now;
 
-        if (diff > 0) {
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-            arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
-        } else {
-            arrivaltime.innerHTML = "Arrived";
-        }
-
-        console.log("Arrival:", arrivalTime.toString());
-        console.log("Arrival UTC:", arrivalTime.toISOString());
-      }else{
+        arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+      } else {
         arrivaltime.innerHTML = "Arrived";
       }
 
+      console.log("Arrival:", arrivalTime.toString());
+      console.log("Arrival UTC:", arrivalTime.toISOString());
+    } else if (flight.arr_time) {
+      const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
+
+      const diff = arrivalTime - now;
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+      } else {
+        arrivaltime.innerHTML = "Arrived";
+      }
+
+    } else {
+      arrivaltime.innerHTML = "Arrived";
+    }
+
 
     if (flight.dep_actual_utc) {
-        const departureTime = new Date(flight.dep_actual_utc.replace(" ", "T") + "Z");
+      const departureTime = new Date(flight.dep_actual_utc.replace(" ", "T") + "Z");
 
-        const diff = now - departureTime;
+      const diff = now - departureTime;
 
-        if (diff > 0) {
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-            departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
-        } else {
-            departtime.innerHTML = "Not departed";
-        }
+        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+      } else {
+        departtime.innerHTML = "Not departed";
+      }
 
-        console.log("Departure:", departureTime.toString());
-        console.log("Departure UTC:", departureTime.toISOString());
-    } else if(flight.dep_time_utc) {
+      console.log("Departure:", departureTime.toString());
+      console.log("Departure UTC:", departureTime.toISOString());
+    } else if (flight.dep_time_utc) {
       const departureTime = new Date(flight.dep_time_utc.replace(" ", "T") + "Z");
 
       const diff = now - departureTime;
 
       if (diff > 0) {
-          const hours = Math.floor(diff / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-          departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
       } else {
-          departtime.innerHTML = "Not departed";
+        departtime.innerHTML = "Not departed";
       }
-    } else{
+    } else {
       const departureTime = new Date(flight.dep_time.replace(" ", "T") + "Z");
 
       const diff = now - departureTime;
 
       if (diff > 0) {
-          const hours = Math.floor(diff / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-          departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
       } else {
-          departtime.innerHTML = "Not departed";
+        departtime.innerHTML = "Not departed";
       }
     }
-    
+
     let aircraft = flight.model || aircraftCodes[flight.aircraft_icao] || "Unavailable";
     aircraft = aircraft.replace(/\s*\([^)]*\)/g, "");
     // console.log("Local time:", new Date().toString());
     // console.log("UTC time:", new Date().toISOString());
 
-    
-    
+
+
     // console.log({
     //   dep_time: flight.dep_time,
     //   arr_time: flight.arr_time,
@@ -667,28 +696,86 @@ async function getFlight(flightNumber) {
     // });
 
     console.log(flight);
-    
+
     document.getElementById("flightinfo").style.visibility = "visible";
     document.getElementById("flightinfo").style.height = "190px";
-    document.getElementById("flightContainer").style.height = "260px";
-    
+    document.getElementById("flightContainer").style.height = "270px";
+
     aircraftmodel.innerHTML = `${aircraft}`;
     airlines.innerHTML = `${flight.airline_name || "Unavailable"}`;
-    depart.innerHTML = `${flight.dep_iata || "Unavailable"}` ;
+    depart.innerHTML = `${flight.dep_iata || "Unavailable"}`;
     departCity.innerHTML = `<strong>${flight.dep_city}`;
     arrival.innerHTML = `${flight.arr_iata || "Unavailable"}`;
     arriveCity.innerHTML = `<strong>${flight.arr_city}`;
     status.innerHTML = `Status: ${flight.status}`;
 
 
-  } catch(error) {
-      console.error("Flight error:", error);
+  } catch (error) {
+    console.error("Flight error:", error);
   }
 }
 
+// --------
+// Calendar
+// --------
+const grid = document.getElementById("grid");
+const monthYear = document.getElementById("monthYear");
+const now = new Date();
+let currentMonth = now.getMonth();   
+let currentYear = now.getFullYear();
 
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+function renderCalendar() {
+  // Clear previous days
+  grid.querySelectorAll(".day").forEach(d => d.remove());
 
+  monthYear.textContent = monthNames[currentMonth] + " " + currentYear;
+
+ 
+  let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  firstDay = (firstDay + 6) % 7;
+
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const today = new Date();
+
+  
+  for (let i = 0; i < firstDay; i++) {
+    const blank = document.createElement("span");
+    blank.className = "day";
+    grid.appendChild(blank);
+  }
+
+  //Day cells
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cell = document.createElement("span");
+    cell.className = "day";
+    cell.textContent = d;
+
+    if (
+      d === today.getDate() &&
+      currentMonth === today.getMonth() &&
+      currentYear === today.getFullYear()
+    ) {
+      cell.classList.add("today");
+    }
+    grid.appendChild(cell);
+  }
+}
+
+document.getElementById("prev").addEventListener("click", () => {
+  currentMonth--;
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  renderCalendar();
+});
+
+document.getElementById("next").addEventListener("click", () => {
+  currentMonth++;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  renderCalendar();
+});
+
+renderCalendar();
 
 
 

@@ -8,8 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EpicTab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -19,25 +23,25 @@
     <form action="https://www.google.com/search" method="GET" id="searchWeb"> <input id="searchIn" style="color: white;"
         type="search" name="q" placeholder="Search Google..." required>
       <!-- <button id="searchBtn" type="submit"><imgSearch</button> --> </form>
-    <div id="bookmarks"> 
+    <div id="bookmarks">
       <!-- <button id="gDocs" class="bookmark">Google Docs</button>  -->
       <div id="createContainer">
         <button id="createBook" class="bookmark">+</button>
         <p id="createtext">Create new bookmark</p>
-        
+
         <div id="bookmarkMaker">
-          <form id="bookmarknew"> 
-            <input name="bookinput" type="text" id="urlinput" class="bookBtn" placeholder="Website URL..." required> 
-            <input name="bookname" type="text" id="nameInput" class="bookBtn" placeholder="Website Name..." required> 
+          <form id="bookmarknew">
+            <input name="bookinput" type="text" id="urlinput" class="bookBtn" placeholder="Website URL..." required>
+            <input name="bookname" type="text" id="nameInput" class="bookBtn" placeholder="Website Name..." required>
             <div id="buttonrow">
-              <button id="addmark" type="submit" class="bookBtn">Add</button> 
+              <button id="addmark" type="submit" class="bookBtn">Add</button>
               <button id="cancelmark" type="button" class="bookBtn">Cancel</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    
+
     <div id="apod">
       <details id="caption">
         <summary>Show full caption</summary>
@@ -61,7 +65,7 @@
       <input class="timein" type="number" id="sec" min="0" max="59" placeholder="sec"></input>
       <div class="buttons">
         <button id="start" type="button"><img src="assets/playbutton.png"></button>
-        <button id="pause" type="button">Pause</button>
+        <button id="pause" type="button"><img src="assets/pauseicon.png"></button>
         <button id="reset" type="button"><img src="assets/reseticong.png"></button>
       </div>
     </div>
@@ -74,24 +78,29 @@
       <details id="moreWeather">
         <summary>Expand</summary>
         <div id="sun">
-            <p id="sunrise"></p>
-            <p id="sunset"></p>
+          <p id="sunrise"></p>
+          <p id="sunset"></p>
         </div>
         <div id="temperaturea">
-            
-            <p id="maxtemp"></p>
-            <p id="mintemp"></p>
+
+          <p id="maxtemp"></p>
+          <p id="mintemp"></p>
         </div>
         <div id="rainstuff">
-            <p id="perceptprob"></p>
-            <p id="rainsum"></p>
+          <p id="perceptprob"></p>
+          <p id="rainsum"></p>
         </div>
       </details>
     </div>
     <div id="flightContainer">
       <p id="header">Flight Tracker</p>
+      <button id="collapse">Collapse</button>
       <input id="flightInput" placeholder="Flight Number">
-      <button id="findflight"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></button>
+      <button id="findflight"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+          width="24px" fill="#000000">
+          <path
+            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+        </svg></button>
       <div id="flightinfo">
         <div id="general">
           <p id="aircraftmodel"></p>
@@ -111,12 +120,30 @@
         </div>
       </div>
     </div>
-    
+
+    <div id="calendar">
+      <div id="calendar-header">
+        <button id="prev">&larr; Prev</button>
+        <span class="month-year" id="monthYear"></span>
+        <button id="next">Next &rarr;</button>
+      </div>
+      <div class="calendar-grid" id="grid">
+        <span class="day-name">Mon</span>
+        <span class="day-name">Tue</span>
+        <span class="day-name">Wed</span>
+        <span class="day-name">Thu</span>
+        <span class="day-name">Fri</span>
+        <span class="day-name">Sat</span>
+        <span class="day-name">Sun</span>
+      </div>
+    </div>
+
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>
-        <!-- <label for="cars">Choose a car:</label>
+<!-- <label for="cars">Choose a car:</label>
         <select name="cars" id="cars">
           <option value="volvo">Volvo</option>
           <option value="saab">Saab</option>

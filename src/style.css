@@ -8,7 +8,7 @@
     box-sizing: border-box;
 } */
 
-body{
+body {
     background-image: url('https://static.vecteezy.com/system/resources/thumbnails/066/625/773/small/serene-abstract-green-landscape-art-with-gentle-flowing-hills-and-valleys-painted-in-shades-of-green-capturing-nature-s-tranquility-background-texture-with-funky-vibes-photo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,24 +17,24 @@ body{
     /* margin: 0; */
 }
 
-#searchWeb{
+#searchWeb {
     display: flex;
-    position:absolute;
+    position: absolute;
     align-items: center;
     justify-content: center;
     /* min-height: 80vh; */
     margin-top: 27%;
     /* margin: 0; */
-    left:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
 }
-#searchIn{
+
+#searchIn {
     border-radius: 10px;
-    background-image: linear-gradient(
-        to bottom right,
-        rgba(14, 14, 14, 0.75),
-        rgba(24, 25, 25, 0.6));
+    background-image: linear-gradient(to bottom right,
+            rgba(14, 14, 14, 0.75),
+            rgba(24, 25, 25, 0.6));
     padding: 10px;
     border-radius: 10px;
     font-size: 16px;
@@ -51,24 +51,28 @@ body{
     margin: 0; */
 
 }
-#searchIn::placeholder{
+
+#searchIn::placeholder {
     color: white;
 }
-#searchBtn{
+
+#searchBtn {
     display: flex;
     position: relative;
     margin-left: 10px;
-    
+
     /* align-items: center;
     justify-content: center;
     margin-top: 100px;
     margin-left: 40%; */
 }
-#app{
+
+#app {
     overflow-y: hidden;
     overflow-x: hidden;
 }
-#bookmarkMaker{
+
+#bookmarkMaker {
     display: none;
     position: absolute;
     top: 60px;
@@ -78,7 +82,7 @@ body{
     background: rgba(47, 48, 47, 0.603);
     padding: 10px;
     border-radius: 10px;
-    gap:3px;
+    gap: 3px;
 }
 
 .dynamic-bookmark {
@@ -104,39 +108,46 @@ body{
 
 
 }
-.dynamic-bookmark .bookimg{
-    width:40px;
-    height:40px;
-    border-radius:5px;
+
+.dynamic-bookmark .bookimg {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
 }
-.dynamic-bookmark span{
+
+.dynamic-bookmark span {
     display: none;
     color: rgb(0, 0, 0);
 
 }
-.dynamic-bookmark:hover span{
+
+.dynamic-bookmark:hover span {
     display: flex;
     color: rgb(0, 0, 0);
 
 }
-.dynamic-bookmark:hover .deleteBtn{
+
+.dynamic-bookmark:hover .deleteBtn {
     display: block;
     font-family: "Nunito";
 }
-.deleteBtn img{
+
+.deleteBtn img {
     width: 20px;
     height: 20px;
 }
-.deleteBtn{
+
+.deleteBtn {
     display: none;
     background: none;
     border: none;
     position: relative;
     top: 20px;
     left: 20px;
-    cursor:pointer;
+    cursor: pointer;
 
 }
+
 /* .bookmark{
     font-family: inherit;
     font-size: 14px;
@@ -148,30 +159,31 @@ body{
     border-radius: 6px;
     transition: background 0.2s;
 } */
-#createBook{
+#createBook {
     width: 40px;
     height: 40px;
     position: relative;
     left: 10px;
-    top:10px;
+    top: 10px;
     border-radius: 50px;
     font-size: 30px;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(
-        to bottom right,
-        rgba(0, 112, 32, 0.75),
-        rgba(0, 255, 174, 0.443));
-    border: solid 1px green;
-    cursor:pointer;
-    filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
+    cursor: pointer;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
-#createtext{
-    display:none;
+
+#createtext {
+    display: none;
 }
-#createBook:hover p{
+
+#createBook:hover p {
     display: flex;
     flex-direction: column;
 }
@@ -181,6 +193,7 @@ body{
     flex-direction: column;
     gap: 10px;
 }
+
 #bookmarknew {
     display: flex;
     flex-direction: column;
@@ -192,6 +205,7 @@ body{
     gap: 10px;
     justify-content: center;
 }
+
 /* #addmark{
     width: 50px;
     display: flex;
@@ -222,7 +236,8 @@ body{
     top: 65%;
     transform: translate(-50%, -50%);
 }
-.bookBtn{
+
+.bookBtn {
     background-color: rgb(32, 163, 91);
     border-radius: 5px;
     border: none;
@@ -231,7 +246,8 @@ body{
     color: rgb(255, 255, 255);
     padding: 3px;
 }
-.bookBtn::placeholder{
+
+.bookBtn::placeholder {
     color: white;
 }
 
@@ -241,7 +257,7 @@ body{
     align-items: center;
 }
 
-#timeElement{
+#timeElement {
     display: flex;
     position: absolute;
     justify-content: center;
@@ -251,7 +267,8 @@ body{
     font-size: 85px;
     font-family: "Audiowide";
 }
-#date{
+
+#date {
     display: flex;
     position: absolute;
     justify-content: center;
@@ -260,13 +277,14 @@ body{
     font-size: 20px;
     transform: translate(-50%, -50%);
     font-family: "Audiowide";
-    
+
 }
+
 /*------------*/
 /* Apod Stuff */
 /*------------*/
 
-#apoddisplay{
+#apoddisplay {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -283,7 +301,8 @@ body{
     z-index: 5;
 
 }
-#apodimg{
+
+#apodimg {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -293,23 +312,24 @@ body{
     align-content: center;
     /* justify-content: center; */
     border-radius: 20px;
-    top: 20px;
+    
     border: 1px solid black;
     filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
     /* z-index: 2; */
     overflow: hidden;
     content: "";
-    
-    top: 10; 
+
+    top: 10;
     left: 10;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);  
-    z-index: 1; 
+    backdrop-filter: blur(10px);
+    z-index: 1;
     box-sizing: border-box;
     transition: filter 1s ease, background-color 1s ease;
 }
+
 /* #apodimg:hover{
 
     filter: blur(10px);
@@ -326,21 +346,23 @@ body{
     );
 } */
 
-#caption{
+#caption {
     position: absolute;
     top: 245px;
     left: 10px;
-    
+
     z-index: 3;
     width: 325px;
     height: auto;
-    
-    text-align:center;
-    
+
+    text-align: center;
+    font-family: "Nunito";
+
 
 
 }
-#caption #info{
+
+#caption #info {
     /* background-image: linear-gradient(
         to bottom,
         rgba(177, 166, 166, 0.4),
@@ -354,35 +376,40 @@ body{
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     border-radius: 20px;
-    backdrop-filter: blur(10px);  
-    margin-top: 8px; 
-    font-size: 14px; 
+    backdrop-filter: blur(10px);
+    margin-top: 8px;
+    font-size: 14px;
     font-size: 14px;
     transition: max-height 1s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
     max-height: 0;
     opacity: 0;
-    overflow-y: scroll;               
-    
+    overflow-y: scroll;
+    font-family: "Nunito";
+
 }
+
 #caption[open] #info {
-    max-height: 100px; 
+    max-height: 100px;
     opacity: 1;
-    padding: 10px; 
+    padding: 10px;
 }
 
 #info::-webkit-scrollbar-track {
-    margin-block: 10px; 
+    margin-block: 10px;
 }
+
 ::-webkit-scrollbar {
     /* position: absolute; */
     width: 12px;
-    margin-block: 10px; 
+    margin-block: 10px;
     background-clip: padding-box;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: rgba(225, 225, 225, 1);
-    border-radius: 10px; 
+    border-radius: 10px;
 }
+
 ::-webkit-scrollbar-track {
     background-color: rgba(4, 29, 50, 0.578);
     border-radius: 10px;
@@ -390,7 +417,7 @@ body{
 
 
 
-#apodtitle{
+#apodtitle {
     z-index: 1;
     position: relative;
     top: 1px;
@@ -406,12 +433,13 @@ body{
     /* justify-content:center;
     text-align:center; */
 }
+
 #apod {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 325px;
-    
+
 }
 
 
@@ -429,40 +457,42 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);              
+    backdrop-filter: blur(10px);
     border-radius: 16px;
 
     justify-content: space-evenly;
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
+
 }
-.timein{
+
+.timein {
     position: relative;
-    
+
     width: 60px;
     height: 30px;
     z-index: 3;
-    padding-top: 5px; 
+    padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
     background: transparent;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 251, 251, 0.537),
-        rgba(57, 53, 53, 0.333)
-
-    );
+    background-image: linear-gradient(to bottom,
+            rgba(255, 251, 251, 0.537),
+            rgba(57, 53, 53, 0.333));
     /* opacity: 0.5; */
     /* outline: white; */
     border: 1px solid;
     font-size: 25px;
     border-radius: 30px;
+    font-family: "Audiowide";
 }
-.timein::placeholder{
-    text-align:center;
+
+.timein::placeholder {
+    text-align: center;
 
 }
+
 /* #min{
     display: flex;
     width: 40px;
@@ -482,44 +512,84 @@ body{
 } */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
-#start{
-    display: flex;
-    z-index: 3;
-    background:none;
-    border: none;
-}
-#start img{
-    background:none;
-    width: 30px;
-    height: 30px;
-}
-#reset{
+
+#start {
     display: flex;
     z-index: 3;
     background: none;
     border: none;
+    transition: all .25s ease;
+    border-radius: 20px;
+
 }
-#reset img{
-    background:none;
+
+#start:hover {
+    background: rgba(75, 73, 73, 0.187);
+}
+
+#start img {
+    background: none;
     width: 30px;
     height: 30px;
-    
+
 }
-.buttons{
+
+#pause {
+    display: flex;
+    z-index: 3;
+    background: none;
+    border: none;
+    transition: all .25s ease;
+    border-radius: 20px;
+}
+
+#pause:hover {
+    background: rgba(75, 73, 73, 0.187);
+}
+
+#pause img {
+    background: none;
+    width: 30px;
+    height: 30px;
+}
+
+#reset {
+    display: flex;
+    z-index: 3;
+    background: none;
+    border: none;
+    transition: all .25s ease;
+    border-radius: 20px;
+}
+
+#reset:hover {
+    background: rgba(75, 73, 73, 0.187);
+}
+
+#reset img {
+    background: none;
+    width: 30px;
+    height: 30px;
+
+}
+
+.buttons {
     position: absolute;
     bottom: 5px;
     display: flex;
     flex-direction: row;
-    width: 100px;
+    width: auto;
     height: 50px;
     align-self: center;
     justify-content: space-around;
     align-items: center;
+
 }
-#progressbar{
+
+#progressbar {
     position: absolute;
     display: flex;
     top: 10px;
@@ -529,19 +599,20 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 10px;
     pointer-events: none;
 
-    
+
     overflow: hidden;
     align-items: center;
 }
 
-#bar{
+#bar {
     position: absolute;
-    width: 0%;
+    width: 100%;
     height: 100%;
     background: rgb(50, 182, 205);
     transition: width 1s linear;
 }
-.colon{
+
+.colon {
     font-size: 30px;
 }
 
@@ -556,34 +627,34 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     top: 30px;
     width: 150px;
     height: 50px;
     border: 1px solid rgba(12, 12, 12, 0.05);
     background-color: rgba(12, 12, 12, 0.167);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);              
+    backdrop-filter: blur(10px);
     border-radius: 16px;
 
     /* justify-content: space-evenly; */
     /* align-items: center; */
-    
+
     box-sizing: border-box;
     text-align: center;
-    
+
     /* justify-items: center; */
 }
 
-#moreWeather{
+#moreWeather {
     visibility: hidden;
     position: relative;
-    
+
     display: flex;
     border: 1px solid rgba(12, 12, 12, 0.05);
     background-color: rgba(12, 12, 12, 0.167);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);              
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     width: 180px;
     height: 80px;
@@ -593,7 +664,8 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
     /* margin-bottom: 3px; */
 }
-#temperaturea{
+
+#temperaturea {
     position: absolute;
     margin-top: -50px;
     width: 110px;
@@ -603,14 +675,16 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 10px;
     font-size: 14px;
 }
-#temperaturea p{
+
+#temperaturea p {
     margin-left: 3px;
     margin-right: 3px;
     margin-top: 0px;
     margin-bottom: 3px;
     font-family: 'Inter';
 }
-#currenttemp{
+
+#currenttemp {
     display: flex;
     position: relative;
     /* margin: 0; */
@@ -619,7 +693,8 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 25px;
     margin-right: 0px;
 }
-.currentWeatherIcon{
+
+.currentWeatherIcon {
     position: relative;
     display: flex;
     margin-top: -5px;
@@ -630,9 +705,10 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 60px;
     height: 60px;
 }
-#tempOnly{
+
+#tempOnly {
     position: relative;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     margin: 0;
@@ -640,14 +716,16 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 130px;
     height: 50px;
 }
-#sun{
+
+#sun {
     position: relative;
     top: 50px;
     width: 115px;
     height: 65px;
     border-radius: 10px;
 }
-#sun p{
+
+#sun p {
     margin-top: 10px;
     margin-bottom: 3px;
     font-size: 13px;
@@ -655,15 +733,16 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-#rainstuff{
+#rainstuff {
     position: relative;
     top: 30px;
     width: 83px;
     height: 150px;
     right: 10px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
-#rainstuff p{
+
+#rainstuff p {
     margin-top: 6px;
     margin-bottom: 4px;
     margin-left: 1px;
@@ -672,13 +751,13 @@ input[type="number"]::-webkit-inner-spin-button {
     font-family: 'Inter';
 }
 
-#rainstuff #rainsum{
+#rainstuff #rainsum {
     font-size: 11px;
 
 }
 
 
-.weatherIcon{
+.weatherIcon {
     width: 32px;
     height: 32px;
 }
@@ -688,38 +767,37 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Flight Tracker */
 /* -------------- */
 
-#flightContainer{
-    
+#flightContainer {
+
     position: absolute;
-    
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     bottom: 10px;
     left: 10px;
     /* left: 50%;
     transform: translate(-50%, 0); */
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);              
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     width: 260px;
     height: 90px;
     max-height: 500;
-    
     transition: height 0.6s ease-out, opacity 0.3s ease-out, padding 0.4s ease-out;
     box-sizing: border-box;
     text-align: center;
 }
 
-#flightInput{
+#flightInput {
     position: absolute;
-    top: 30px;
+    top: 40px;
     width: 130px;
     height: 30px;
     left: 10px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
@@ -731,25 +809,28 @@ input[type="number"]::-webkit-inner-spin-button {
     font-family: "Audiowide";
 
 }
-#flightInput::placeholder{
-    
+
+#flightInput::placeholder {
+
     color: rgb(53, 52, 52);
     text-align: center;
 }
 
-#header{
+#header {
     position: absolute;
-    margin-top:7px;
+    margin-top: 7px;
     left: 10px;
     font-family: "Nunito";
+    color: black;
 }
-#findflight{
+
+#findflight {
     position: absolute;
-    top: 30px;
+    top: 40px;
     width: 50px;
     height: 30px;
     left: 150px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
@@ -760,64 +841,75 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
     font-family: "Nunito";
 }
-#flightinfo{
+
+#findflight:hover {
+    background: rgba(75, 73, 73, 0.187);
+}
+
+#flightinfo {
     visibility: hidden;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    background:transparent;
+    background: transparent;
 
-    
+
     position: absolute;
-    bottom:0px;
-    
+    bottom: 0px;
+
     width: 250px;
     height: 0px;
     max-height: 500px;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     font-family: "Nunito";
 
     transition: height 1s ease-out;
 }
-#depart{
+
+#depart {
     margin-top: -8px;
     font-size: 30px;
     font-family: "Nunito";
 }
-#departcity{
+
+#departcity {
     margin-top: -32px;
     font-size: 13px;
     width: 90px;
     margin-left: 0px;
-    align-self:center;
-    
+    align-self: center;
+
     text-align: center;
     font-family: "Nunito";
     line-height: 1;
 }
-#departtime{
+
+#departtime {
     position: absolute;
-    
+
     align-self: center;
     top: 50px;
     font-size: 13px;
     font-family: "Nunito";
 }
-#planeimg{
+
+#planeimg {
     position: absolute;
     top: 10px;
     left: 50%;
-    transform: translate(-55%,10%);
+    transform: translate(-55%, 10%);
     width: 70px;
     height: 70px;
 }
-#arrival{
+
+#arrival {
     margin-top: -8px;
     font-size: 30px;
     font-family: "Nunito";
 }
-#arrivaltime{
+
+#arrivaltime {
     position: absolute;
     padding-left: 3px;
     padding-right: 3px;
@@ -826,62 +918,67 @@ input[type="number"]::-webkit-inner-spin-button {
     top: 50px;
     font-family: "Nunito";
 }
-#arrivecity{
+
+#arrivecity {
     margin-top: -32px;
     font-size: 13px;
     width: 90px;
     margin-left: 0px;
-    align-self:center;
-    
-    text-align: center;;
+    align-self: center;
+
+    text-align: center;
+    ;
     font-family: "Nunito";
     line-height: 1;
-    
+
 }
 
-#airlines{
-    
+#airlines {
+
     position: absolute;
     margin-top: 0px;
     left: 0px;
     font-size: 20px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
     padding: 3px;
 
 }
-#aircraftmodel{
+
+#aircraftmodel {
     position: absolute;
     margin-top: 40px;
     left: 0px;
     padding: 3px;
     font-size: 15px;
     /* width: 160px; */
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
 }
-#status{
+
+#status {
     position: absolute;
-    
+
     padding: 2px;
-    right:0px;
+    right: 0px;
     width: 60px;
     height: 60px;
-    
-    border: 1px solid rgba(255,255,255,0.2);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
-    text-align:center;
+    text-align: center;
     margin-top: 0px;
 }
-#general{
+
+#general {
     width: 250px;
-    
+
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -890,41 +987,144 @@ input[type="number"]::-webkit-inner-spin-button {
     left: 0px;
     height: 90px
 }
-#departure{
+
+#departure {
     display: flex;
     flex-direction: column;
     position: absolute;
     margin-top: 0px;
-    left:5px;
+    left: 5px;
     /* border: 1px solid black; */
     height: 90px;
     width: 80px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 10px;
-    padding: 5px;
-    background: rgba(241, 240, 240, 0.187);
-    backdrop-filter: blur(10px);
-}
-#arriving{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    margin-top: 0px;
-    right:5px;
-    height: 90px;
-    width: 80px;
-    /* border: 1px solid black; */
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 5px;
     background: rgba(241, 240, 240, 0.187);
     backdrop-filter: blur(10px);
 }
 
+#arriving {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 0px;
+    right: 5px;
+    height: 90px;
+    width: 80px;
+    /* border: 1px solid black; */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 5px;
+    background: rgba(241, 240, 240, 0.187);
+    backdrop-filter: blur(10px);
+}
+
+#collapse {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    right: 8px;
+    top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.187);
+    backdrop-filter: blur(10px);
+    color: black;
+    font-size: 15px;
+    outline: none;
+    transition: all .25s ease;
+    text-align: center;
+    font-family: "Nunito";
+
+}
+
+#collapse:hover {
+    background: rgba(75, 73, 73, 0.187);
+}
+
+/* -------- */
+/* Calendar */
+/* -------- */
+
+#calendar {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    
+    width: 230px;
+    height: 200px;
+    
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0px;
+    text-align: center;
+    width: 230px;
+    height: 200px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.calendar-header button {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.calendar-header button:hover {
+    background: #f1f5f9;
+}
+
+.month-year {
+    font-size: 19px;
+    font-weight: 600;
+    
+}
 
 
 
+.day-name {
+    
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
 
+.day {
+    /* padding: 10px; */
+    font-size:15px;
+    border-radius: 6px;
+}
+
+.day:hover {
+    background: #f1f5f9;
+}
+
+.today {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+
+.today:hover {
+    background: var(--accent);
+}
 
 
 
@@ -933,36 +1133,36 @@ input[type="number"]::-webkit-inner-spin-button {
 /* ----- */
 
 .nunito-font {
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 10;
-  font-style: normal;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
 }
 
 
 .elms-sans-font {
-  font-family: "Elms Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 10;
-  font-style: normal;
+    font-family: "Elms Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
 }
 
 .michroma-regular {
-  font-family: "Michroma", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .audiowide-regular {
-  font-family: "Audiowide", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
 .inter-font {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 10px;
-  font-style: normal;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10px;
+    font-style: normal;
 }
