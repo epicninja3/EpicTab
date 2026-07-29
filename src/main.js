@@ -166,7 +166,7 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
     console.log(data);
     if (data.media_type === "video"){
       apodDisplay.style.display = "none";
-      videoApod.style.display = "block";
+      videoApod.style.display = "flex";
       videoApod.src = apodurl;
     } else {
       videoApod.style.display = "none";

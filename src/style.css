@@ -79,10 +79,15 @@ body {
     left: 50%;
     transform: translateX(-50%);
 
-    background: rgba(47, 48, 47, 0.603);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
     padding: 10px;
-    border-radius: 10px;
+    
     gap: 3px;
+    transition: all 1s ease-out;
 }
 
 .dynamic-bookmark {
@@ -206,29 +211,7 @@ body {
     justify-content: center;
 }
 
-/* #addmark{
-    width: 50px;
-    display: flex;
-    position: relative;
-    top: 10px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align:center;
-    align-items:center;
-    
 
-}
-#cancelmark{
-    width: 50px;
-    display: flex;
-    position: relative;
-    
-    left: 50%;
-    top: 10px;
-    transform: translate(-50%, -50%);
-    text-align:center;
-    align-items:center;
-} */
 #bookmarks {
     display: flex;
     position: absolute;
@@ -238,17 +221,23 @@ body {
 }
 
 .bookBtn {
-    background-color: rgb(32, 163, 91);
-    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+   
     border: none;
     position: relative;
     gap: 8px;
-    color: rgb(255, 255, 255);
+    color: black;
     padding: 3px;
+    font-family: "Nunito";
+    
 }
 
 .bookBtn::placeholder {
-    color: white;
+    color: black;
+    font-family: "Nunito";
 }
 
 #createContainer {
@@ -314,7 +303,7 @@ body {
     border: none;
     /* bottom: 0px; */
     left: 12px;
-    top: 20px;
+    top: 30px;
     z-index: 5;
 
 }
@@ -365,7 +354,7 @@ body {
 
 #caption {
     position: absolute;
-    top: 245px;
+    top: 250px;
     left: 10px;
 
     z-index: 3;
@@ -374,9 +363,6 @@ body {
 
     text-align: center;
     font-family: "Nunito";
-
-
-
 }
 
 #caption #info {
@@ -659,6 +645,8 @@ input[type="number"]::-webkit-inner-spin-button {
 
     box-sizing: border-box;
     text-align: center;
+    font-family: "Nunito";
+    
 
     /* justify-items: center; */
 }
@@ -1071,38 +1059,57 @@ input[type="number"]::-webkit-inner-spin-button {
     right: 10px;
     bottom: 15px;
     
-    width: 230px;
-    height: 210px;
+    width: 240px;
+    height: 220px;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
     backdrop-filter: blur(10px);
     border-radius: 16px;
+    transition: all .25s ease;
 }
 
 .calendar-grid {
     position: absolute;
     justify-content: center;
     display: grid;
-    top: 35px;
+    top: 38px;
     grid-template-columns: repeat(7, 1fr);
     
     text-align: center;
     width: 230px;
-    height: 180px;
+    height: 185px;
+    transition: all .25s ease;
 }
 
 #calendar-header {
+    display: flex;
+    width: 100%;
     position: absolute;
     margin-top: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 0px;
+    transition: all .25s ease;
+    
     
 }
 
-#calendar-header button {
+#prev {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Nunito"; 
+    margin-left: 3px;
+    transition: all .25s ease;
+}
+#next {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.447);
@@ -1110,8 +1117,11 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
     font-size: 14px;
     font-family: "Nunito";
-    
+    margin-right: 3px;
+    transition: all .25s ease;
 }
+
+
 
 #calendar-header button:hover {
     background: rgba(241, 240, 240, 0.187);
@@ -1119,10 +1129,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .month-year {
     
-    padding: 5px;
-    font-size: 17px;
-    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: rgb(4, 45, 133);
     font-family: "Nunito";
+    transition: all .25s ease;
     
 }
 
@@ -1136,6 +1148,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 600;
     color: black;
     font-family: "Nunito";
+    
 }
 
 .day {
@@ -1156,21 +1169,21 @@ input[type="number"]::-webkit-inner-spin-button {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     font-family: "Nunito";
+    transition: all .25s ease;
 
 }
 
 .day:hover {
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: rgba(50, 182, 205, 0.676);
 }
 
 .today {
-    
-    
     font-weight: 600;
     border: 1px solid rgba(50, 182, 205, 0.2);
     background-color: rgba(50, 182, 205, 0.676);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
+    transition: all .25s ease;
 }
 
 .today:hover {
