@@ -301,6 +301,23 @@ body {
     z-index: 5;
 
 }
+#apodvideo {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 300px;
+    height: 190px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    border: none;
+    /* bottom: 0px; */
+    left: 12px;
+    top: 20px;
+    z-index: 5;
+
+}
 
 #apodimg {
     position: absolute;
@@ -319,8 +336,8 @@ body {
     overflow: hidden;
     content: "";
 
-    top: 10;
-    left: 10;
+    top: 20px;
+    left: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -450,8 +467,8 @@ body {
 #timer {
     position: absolute;
     display: flex;
-    right: 20px;
-    top: 30px;
+    right: 10px;
+    top: 20px;
     width: 250px;
     height: 160px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1036,6 +1053,7 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: all .25s ease;
     text-align: center;
     font-family: "Nunito";
+    visibility: hidden;
 
 }
 
@@ -1049,12 +1067,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #calendar {
     position: absolute;
-    left: 50%;
-    bottom: 20px;
+    display: flex;
+    right: 10px;
+    bottom: 15px;
     
     width: 230px;
-    height: 200px;
-    
+    height: 210px;
+    justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -1063,67 +1082,99 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .calendar-grid {
+    position: absolute;
+    justify-content: center;
     display: grid;
+    top: 35px;
     grid-template-columns: repeat(7, 1fr);
-    gap: 0px;
+    
     text-align: center;
     width: 230px;
-    height: 200px;
+    height: 180px;
 }
 
-.calendar-header {
+#calendar-header {
+    position: absolute;
+    margin-top: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     
 }
 
-.calendar-header button {
-    background: none;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    
+#calendar-header button {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
     cursor: pointer;
     font-size: 14px;
+    font-family: "Nunito";
+    
 }
 
-.calendar-header button:hover {
-    background: #f1f5f9;
+#calendar-header button:hover {
+    background: rgba(241, 240, 240, 0.187);
 }
 
 .month-year {
-    font-size: 19px;
+    
+    padding: 5px;
+    font-size: 17px;
     font-weight: 600;
+    font-family: "Nunito";
     
 }
 
 
 
 .day-name {
+    /* border: 1px solid; */
     
+    height: 10px;
     font-size: 13px;
     font-weight: 600;
-    color: #64748b;
+    color: black;
+    font-family: "Nunito";
 }
 
 .day {
-    /* padding: 10px; */
+    
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    height: 20px;
     font-size:15px;
     border-radius: 6px;
+    width: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.352);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    font-family: "Nunito";
+
 }
 
 .day:hover {
-    background: #f1f5f9;
+    background-color: rgba(255, 255, 255, 0.89);
 }
 
 .today {
-    background: var(--accent);
-    color: #fff;
+    
+    
     font-weight: 600;
+    border: 1px solid rgba(50, 182, 205, 0.2);
+    background-color: rgba(50, 182, 205, 0.676);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .today:hover {
-    background: var(--accent);
+    background-color: rgba(255, 255, 255, 0.89);
 }
 
 

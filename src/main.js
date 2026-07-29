@@ -157,12 +157,24 @@ const apodDisplay = document.getElementById("apoddisplay");
 const apodTitle = document.getElementById("apodtitle");
 const apodinfo = document.getElementById("info");
 const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+const videoApod = document.getElementById("apodvideo");
 
 fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
   .then(response => response.json())
   .then(data => {
     const apodurl = data.url;
-    apodDisplay.style.backgroundImage = `url(${apodurl})`;
+    console.log(data);
+    if (data.media_type === "video"){
+      apodDisplay.style.display = "none";
+      videoApod.style.display = "block";
+      videoApod.src = apodurl;
+    } else {
+      videoApod.style.display = "none";
+      apodDisplay.style.display = "flex";
+      apodDisplay.style.backgroundImage = `url(${apodurl})`;
+
+    }
+    
     apodinfo.innerHTML = data.explanation;
     apodTitle.innerHTML = data.title;
   })
@@ -595,88 +607,119 @@ async function getFlight(flightNumber) {
       "GLEX": "Bombardier Global Express",
       "PC12": "Pilatus PC-12"
     };
-
+    console.log(flight);
     // const arrival = new Date(flight.arr_time_utc.replace(" ", "T") + "Z");
     const now = new Date();
+    if (flight.status === "en-route" || flight.status === "landed") {
 
-    if (flight.arr_estimated_utc) {
-      const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
 
-      const diff = arrivalTime - now;
+      if (flight.dep_actual_utc) {
+        if (flight.dep_actual_utc) {
+          const departureTime = new Date(flight.dep_actual_utc.replace(" ", "T") + "Z");
 
-      if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const diff = now - departureTime;
 
-        arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+          if (diff > 0) {
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+          } else {
+            departtime.innerHTML = "Not departed";
+          }
+
+          console.log("Departure:", departureTime.toString());
+          console.log("Departure UTC:", departureTime.toISOString());
+
+        } else if (flight.dep_time_utc) {
+          const departureTime = new Date(flight.dep_time_utc.replace(" ", "T") + "Z");
+
+          const diff = now - departureTime;
+
+          if (diff > 0) {
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+          } else {
+            departtime.innerHTML = "Not departed";
+          }
+        } else {
+          const departureTime = new Date(flight.dep_time.replace(" ", "T") + "Z");
+
+          const diff = now - departureTime;
+
+          if (diff > 0) {
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
+          } else {
+            departtime.innerHTML = "Not departed";
+          }
+        }
       } else {
-        arrivaltime.innerHTML = "Arrived";
+        // No actual departure time available.
+        departtime.innerHTML = "Departed";
       }
-
-      console.log("Arrival:", arrivalTime.toString());
-      console.log("Arrival UTC:", arrivalTime.toISOString());
-    } else if (flight.arr_time) {
-      const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
-
-      const diff = arrivalTime - now;
-
-      if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
-      } else {
-        arrivaltime.innerHTML = "Arrived";
-      }
-
     } else {
+      departtime.innerHTML = "Not Departed";
+    }
+
+
+    if (flight.status === "landed") {
       arrivaltime.innerHTML = "Arrived";
-    }
-
-
-    if (flight.dep_actual_utc) {
-      const departureTime = new Date(flight.dep_actual_utc.replace(" ", "T") + "Z");
-
-      const diff = now - departureTime;
-
-      if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
-      } else {
-        departtime.innerHTML = "Not departed";
-      }
-
-      console.log("Departure:", departureTime.toString());
-      console.log("Departure UTC:", departureTime.toISOString());
-    } else if (flight.dep_time_utc) {
-      const departureTime = new Date(flight.dep_time_utc.replace(" ", "T") + "Z");
-
-      const diff = now - departureTime;
-
-      if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
-      } else {
-        departtime.innerHTML = "Not departed";
-      }
     } else {
-      const departureTime = new Date(flight.dep_time.replace(" ", "T") + "Z");
+      if (flight.arr_estimated_utc) {
+        const arrivalTime = new Date(flight.arr_estimated_utc.replace(" ", "T") + "Z");
 
-      const diff = now - departureTime;
+        const diff = arrivalTime - now;
 
-      if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        if (diff > 0) {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-        departtime.innerHTML = `Departed ${hours}h ${minutes}m ago`;
-      } else {
-        departtime.innerHTML = "Not departed";
+          arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+        } else {
+          arrivaltime.innerHTML = "Arrived";
+        }
+
+        // console.log("Arrival:", arrivalTime.toString());
+        // console.log("Arrival UTC:", arrivalTime.toISOString());
+      }
+      else if (flight.arr_time_utc) {
+        const arrivalTime = new Date(flight.arr_time_utc.replace(" ", "T") + "Z");
+
+        const diff = arrivalTime - now;
+
+        if (diff > 0) {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+          arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+        } else {
+          arrivaltime.innerHTML = "Arrived";
+        }
+      }
+      else if (flight.arr_time) {
+        const arrivalTime = new Date(flight.arr_time.replace(" ", "T") + "Z");
+
+        const diff = arrivalTime - now;
+
+        if (diff > 0) {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+          arrivaltime.innerHTML = `Landing in ${hours}h ${minutes}m`;
+        } else {
+          arrivaltime.innerHTML = "Arrived";
+        }
       }
     }
+
+
+
+
 
     let aircraft = flight.model || aircraftCodes[flight.aircraft_icao] || "Unavailable";
     aircraft = aircraft.replace(/\s*\([^)]*\)/g, "");
@@ -685,21 +728,14 @@ async function getFlight(flightNumber) {
 
 
 
-    // console.log({
-    //   dep_time: flight.dep_time,
-    //   arr_time: flight.arr_time,
-    //   dep_time_utc: flight.dep_time_utc,
-    //   arr_time_utc: flight.arr_time_utc,
-    //   dep_iata: flight.dep_iata,
-    //   arr_iata: flight.arr_iata,
-    //   status: flight.status
-    // });
 
-    console.log(flight);
+    
+
 
     document.getElementById("flightinfo").style.visibility = "visible";
     document.getElementById("flightinfo").style.height = "190px";
     document.getElementById("flightContainer").style.height = "270px";
+    document.getElementById("collapse").style.visibility = "visible";
 
     aircraftmodel.innerHTML = `${aircraft}`;
     airlines.innerHTML = `${flight.airline_name || "Unavailable"}`;
@@ -721,7 +757,7 @@ async function getFlight(flightNumber) {
 const grid = document.getElementById("grid");
 const monthYear = document.getElementById("monthYear");
 const now = new Date();
-let currentMonth = now.getMonth();   
+let currentMonth = now.getMonth();
 let currentYear = now.getFullYear();
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -732,14 +768,14 @@ function renderCalendar() {
 
   monthYear.textContent = monthNames[currentMonth] + " " + currentYear;
 
- 
+
   let firstDay = new Date(currentYear, currentMonth, 1).getDay();
   firstDay = (firstDay + 6) % 7;
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const today = new Date();
 
-  
+
   for (let i = 0; i < firstDay; i++) {
     const blank = document.createElement("span");
     blank.className = "day";
