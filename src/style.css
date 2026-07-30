@@ -3,6 +3,26 @@
     inherits: false;
     initial-value: 100%;
 }
+.light-text {
+    --text-color: white;
+}
+
+.dark-text {
+    --text-color: black;
+}
+#timeElement,
+#date,
+#currenttemp,
+#bookmarktext,
+#apodtitle,
+#caption,
+#info,
+#createBook,
+.searchText,
+.dynamic-bookmark {
+    color: var(--text-color);
+}
+
 
 /* * {
     box-sizing: border-box;
@@ -123,12 +143,15 @@ body {
 .dynamic-bookmark span {
     display: none;
     color: rgb(0, 0, 0);
+    
 
 }
 
 .dynamic-bookmark:hover span {
     display: flex;
     color: rgb(0, 0, 0);
+    filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
+    
 
 }
 
@@ -255,6 +278,8 @@ body {
     transform: translate(-50%, -50%);
     font-size: 85px;
     font-family: "Audiowide";
+    filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
+
 }
 
 #date {
@@ -266,6 +291,7 @@ body {
     font-size: 20px;
     transform: translate(-50%, -50%);
     font-family: "Audiowide";
+    filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
 
 }
 
@@ -634,8 +660,8 @@ input[type="number"]::-webkit-inner-spin-button {
     top: 30px;
     width: 150px;
     height: 50px;
-    border: 1px solid rgba(12, 12, 12, 0.05);
-    background-color: rgba(12, 12, 12, 0.167);
+    border: 1px solid rgba(255, 255, 255, 0.199);
+    background-color: rgba(255, 255, 255, 0.374);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -1188,6 +1214,171 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .today:hover {
     background-color: rgba(255, 255, 255, 0.89);
+}
+
+/* -------- */
+/* Settings */
+/* -------- */
+
+#settings{
+    border: 1px solid;
+    /* width: 150px;
+    height: 300px; */
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    
+    
+    
+    bottom: 5px;
+    left: 50%;
+
+}
+
+#opensettings{
+    position: absolute;
+    display: flex;
+    bottom: 0px;
+    left: 0%;
+    width: 60px;
+    height: 60px;
+    padding: 10px 10px;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.183);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+
+}
+#settingsmenu{
+    position: absolute;
+    display: none;
+    width: 130px;
+    height: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.183);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    bottom: 70px;
+    left: 0px;
+
+}
+#closemenu{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.closeBtn{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s ease-out;
+}
+.closeBtn img{
+    width: 15px;
+    height: 15px;
+}
+.closeBtn:hover{
+    background: rgba(181, 178, 178, 0.881);
+}
+#backgroundBtn{
+    position: absolute;
+    width: 80px;
+    height: auto;
+    top: 10px;
+    left: 5px;
+    padding: 5px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Nunito"; 
+    
+    transition: all .25s ease;
+
+}
+#backgroundBtn:hover{
+    background: rgba(181, 178, 178, 0.881);
+}
+
+#backgroundsettings{
+    position: absolute;
+    display: none;
+    width: 110px;
+    height: 130px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.183);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    bottom: 70px;
+    left: 0px;
+    justify-content: center;
+    
+
+}
+/* #wallpaperupload{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+} */
+#changewallpaper{
+    width: 90px;
+    height: 70px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    top: 30px;
+    
+}
+.backBtn{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    width: 50px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s ease-out;
+    font-family: "Nunito";
+}
+#closebackset{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#changewallpaper:hover{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+#uploadtext{
+    position: absolute;
+    font-family: "Nunito";
+    bottom: -8px;
+    font-size: 10px;
+    justify-content: center;
+    text-align: center;
 }
 
 

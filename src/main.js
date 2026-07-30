@@ -1,14 +1,67 @@
 import './style.css'
 
+
+// load the saved wallpaper
+
+function wallpaperColorCheck(image){
+  const img = new Image();
+
+  img.onload = () => {
+    // makes the image a canvas and checks for the pixel brightness
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // canvas.width = img.width;
+    // canvas.height = img.height;
+
+    // ctx.drawImage(img, 0, 0);
+
+    //Scaled down so its easier
+    canvas.width = 50;
+    canvas.height = 50;
+
+    ctx.drawImage(img, 0, 0, 50, 50);
+
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+    let total = 0;
+
+    for (let i = 0; i < pixels.length; i += 4) {
+      total += (pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3;
+    }
+
+    const brightness = total / (pixels.length / 4);
+    // console.log(brightness);
+    document.body.classList.remove("light-text", "dark-text");
+    if (brightness < 128) {
+      document.body.classList.add("light-text");
+    } else {
+      document.body.classList.add("dark-text");
+    }
+  };
+
+  img.src = image;
+
+};
+
+const savedWallpaper = localStorage.getItem("customWallpaper");
+
+if (savedWallpaper) {
+    document.body.style.backgroundImage = `url(${savedWallpaper})`;
+    wallpaperColorCheck(savedWallpaper);
+};
+
+
+
 function screenClose(element) {
   element.style.display = "none";
 
-}
+};
 function screenOpen(element) {
   element.style.display = "flex";
   //   element.classList.remove('fade');
 
-}
+};
 
 // ----------
 // Time
@@ -30,7 +83,7 @@ function updateTime() {
   // timeText.innerHTML = currentTime
   document.querySelector("#timeElement").innerHTML = `${time}`
   document.querySelector("#date").innerHTML = `${date}`
-}
+};
 updateTime();
 setInterval(updateTime, 1000);
 
@@ -65,7 +118,7 @@ cancelBook.addEventListener('click', function () {
   screenClose(bookmarkMaker);
 });
 
-//dynamically add the new bookmarks
+//add the new bookmarks
 function showBookmarks() {
 
   const oldLinks = bookmarksContainer.querySelectorAll('.dynamic-bookmark');
@@ -74,16 +127,18 @@ function showBookmarks() {
 
   bookmarks.forEach((item, index) => {
 
+    //creates a new bookmark
     const newButton = document.createElement('a');
     newButton.href = item.url;
     newButton.target = "_blank";
-
+    //text for new bookmark
     const text = document.createElement("span");
     text.textContent = item.name;
     text.style.fontFamily = "Nunito";
+    text.id = "bookmarktext";
     text.style.fontSize = "20px";
     const deleteBtn = document.createElement('button');
-
+    //adds the delete button for the bookmark
     deleteBtn.classList.add('deleteBtn');
     const deleteimg = document.createElement('img');
     deleteimg.src = `${import.meta.env.BASE_URL}assets/red-trash-can-icon.png`;
@@ -110,10 +165,13 @@ function showBookmarks() {
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       showBookmarks();
     })
+
+    //append each new element to the bookmark
     newButton.append(deleteBtn);
     newButton.append(img);
     newButton.append(text);
     // newButton.append(deleteBtn);
+    //Adds the new bookmark before the create bookmark button
     bookmarksContainer.insertBefore(newButton, createContainer);
   });
 }
@@ -164,7 +222,7 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
   .then(data => {
     const apodurl = data.url;
     console.log(data);
-    if (data.media_type === "video"){
+    if (data.media_type === "video") {
       apodDisplay.style.display = "none";
       videoApod.style.display = "flex";
       videoApod.src = apodurl;
@@ -174,9 +232,10 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
       apodDisplay.style.backgroundImage = `url(${apodurl})`;
 
     }
-    
+
     apodinfo.innerHTML = data.explanation;
     apodTitle.innerHTML = data.title;
+    apodDisplay.innerHTML = "";
   })
   .catch(error => {
     console.error(error);
@@ -204,6 +263,7 @@ function startTime() {
   let m = parseInt(min.value) || 0;
   let s = parseInt(sec.value) || 0;
 
+  //create timeleft first
   if (timeLeft === 0) {
     totalSeconds = (h * 3600) + (m * 60) + (s)
     timeLeft = totalSeconds;
@@ -220,6 +280,7 @@ function startTime() {
     bar.style.width = "0%";
     alert("Please enter a value in at least on of the input fields!");
     console.log("Please enter a value.");
+    
 
     return;
   }
@@ -230,6 +291,7 @@ function startTime() {
 
         // s--;
         timeLeft--;
+        //changes the bar width based on time
         var percent = (timeLeft / totalSeconds) * 100;
         bar.style.width = percent + "%";
         if (percent == 0) {
@@ -478,7 +540,7 @@ collapse.addEventListener('click', function () {
 
 async function getFlight(flightNumber) {
   try {
-
+    //fetching data from the API
     const url =
       `https://airlabs.co/api/v9/flight?` +
       `api_key=${FLIGHT_API_KEY}` +
@@ -505,8 +567,10 @@ async function getFlight(flightNumber) {
     // console.log("Flight data:", data);
     // console.log("Aircraft data:", datab);
     // const plane = datab.response;
+
+    //fallback for each plane based on icao codes
     const aircraftCodes = {
-      // Airbus A320 Family
+      //Airbus
       "A318": "Airbus A318",
       "A319": "Airbus A319",
       "A320": "Airbus A320",
@@ -524,7 +588,7 @@ async function getFlight(flightNumber) {
       "A35K": "Airbus A350-1000",
       "A388": "Airbus A380",
 
-      // Boeing 737 Family
+      //Boeing 737s
       "B731": "Boeing 737-100",
       "B732": "Boeing 737-200",
       "B733": "Boeing 737-300",
@@ -539,23 +603,23 @@ async function getFlight(flightNumber) {
       "B39M": "Boeing 737 MAX 9",
       "B3XM": "Boeing 737 MAX 10",
 
-      // Boeing 747 Family
+      //Boeing 747s
       "B741": "Boeing 747-100",
       "B742": "Boeing 747-200",
       "B743": "Boeing 747-300",
       "B744": "Boeing 747-400",
       "B748": "Boeing 747-8",
 
-      // Boeing 757 Family
+      //Boeing 757s
       "B752": "Boeing 757-200",
       "B753": "Boeing 757-300",
 
-      // Boeing 767 Family
+      //Boeing 767
       "B762": "Boeing 767-200",
       "B763": "Boeing 767-300",
       "B764": "Boeing 767-400",
 
-      // Boeing 777 Family
+      //Boeing 777
       "B772": "Boeing 777-200",
       "B77L": "Boeing 777-200LR",
       "B773": "Boeing 777-300",
@@ -729,7 +793,7 @@ async function getFlight(flightNumber) {
 
 
 
-    
+
 
 
     document.getElementById("flightinfo").style.visibility = "visible";
@@ -813,13 +877,73 @@ document.getElementById("next").addEventListener("click", () => {
 
 renderCalendar();
 
+// --------
+// Settings
+// --------
+
+const settingsContainer = document.getElementById("settings");
+const openSettings = document.getElementById("opensettings");
+const backgroundBtn = document.getElementById("backgroundBtn");
+const settingsMenu = document.getElementById("settingsmenu");
+const backgroundSettings = document.getElementById("backgroundsettings");
+const upload = document.getElementById("wallpaperupload");
+const wallpaperBtn = document.getElementById("changewallpaper");
+const wallpaperBack = document.getElementById("closebackset");
+const closeMenu = document.getElementById("closemenu");
 
 
+openSettings.addEventListener('click', function () {
+  settingsMenu.style.display = "flex";
+  settingsContainer.style.width = "140px";
+  settingsContainer.style.height = "280px";
 
+});
 
+backgroundBtn.addEventListener('click', function () {
+  backgroundSettings.style.display = "flex";
+  settingsMenu.style.display = "none";
+  settingsContainer.style.width = "115px";
+  settingsContainer.style.height = "210px";
+});
 
+wallpaperBtn.addEventListener('click', function () {
+  upload.click();
+});
+wallpaperBack.addEventListener('click', function () {
+  backgroundSettings.style.display = "none";
+  settingsMenu.style.display = "flex";
+  settingsContainer.style.width = "140px";
+  settingsContainer.style.height = "280px";
+})
+closeMenu.addEventListener('click', function () {
+  settingsMenu.style.display = "none";
+  settingsContainer.style.width = "60px";
+  settingsContainer.style.height = "60px";
+})
 
+upload.addEventListener("change", (event) => {
+  const file = event.target.files[0];
 
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    const image = e.target.result;
+
+    document.body.style.backgroundImage = `url(${image})`;
+
+    localStorage.setItem("customWallpaper", image);
+
+    wallpaperColorCheck(image);
+  };
+    
+
+  reader.readAsDataURL(file);
+  backgroundSettings.style.display = "none";
+  settingsContainer.style.width = "60px";
+  settingsContainer.style.height = "60px";
+});
 
 
 
