@@ -66,8 +66,105 @@ function screenOpen(element) {
 // ----------
 // Time
 // ----------
-function updateTime() {
+
+
+const greetingContainer = document.getElementById("greetingContainer");
+const greeting = document.getElementById("greeting");
+const userName = document.getElementById("userName");
+const nameForm = document.getElementById("nameForm");
+const nameEdit = document.getElementById("nameEdit");
+
+// let displayName = localStorage.getItem('savedName');
+
+function displayGreeting(){
+  const savedName = localStorage.getItem("savedName");
   const now = new Date();
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+
+  
+  if (savedName){
+    if (currentHour <= 11 && currentHour >= 5){
+      greeting.innerHTML = `Good morning, ${savedName}.`;
+      greeting.style.height = "30px";
+      
+      greetingContainer.style.display = "flex";
+      greetingContainer.style.height = "60px";
+      greetingContainer.style.justifyContent = "center";
+      greetingContainer.style.alignItems = "center";
+    }
+    else if (currentHour >= 12 && currentHour < 18){
+      greeting.innerHTML = `Good afternoon, ${savedName}.`;  
+      greeting.style.alignSelf = "center";
+      // greeting.style.height = "30px";
+
+      greetingContainer.style.display = "flex";
+      greetingContainer.style.height = "60px";
+      greetingContainer.style.justifyContent = "center";
+      greetingContainer.style.alignItems = "center";
+    }
+    else if (currentHour >= 18 && currentHour < 21){
+      greeting.innerHTML = `Good evening, ${savedName}.`;
+      greeting.style.alignSelf = "center";
+      // greeting.style.height = "30px";
+
+      greetingContainer.style.display = "flex";
+      // greetingContainer.style.width = "500px";
+      // greetingContainer.style.height = "60px";
+      greetingContainer.style.justifyContent = "center";
+      greetingContainer.style.alignItems = "center";
+    }
+    else {
+      greeting.innerHTML = `Hello, ${savedName}.`;
+      // greeting.style.height = "30px";
+
+      greeting.style.alignSelf = "center";
+      greetingContainer.style.display = "flex";
+      // greetingContainer.style.width = "270px";
+      // greetingContainer.style.height = "60px";
+      greetingContainer.style.justifyContent = "center";
+      greetingContainer.style.alignItems = "center";
+    }
+    nameForm.style.display = "none"; 
+    
+    Object.assign(greeting.style, {
+      border: "1px solid rgba(255, 255, 255, 0.2)",
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+      backdropFilter: "blur(10px)",
+      borderRadius: "16px",
+      padding: "10px 10px",
+      
+      
+    });
+    
+    
+
+  }
+  else {
+    greeting.innerHTML = "Hello! Please enter your name.";
+  }
+};
+
+nameEdit.addEventListener('click', function(){
+  nameForm.style.display = "flex";
+  greeting.innerHTML = "Hello! Please enter your name.";
+  userName.value = "";
+
+})
+
+nameForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    localStorage.setItem("savedName", userName.value);
+    displayGreeting();
+});
+
+displayGreeting();
+
+function updateTime() {
+  
+  const now = new Date();
+  
   const date = now.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
@@ -81,8 +178,12 @@ function updateTime() {
   // var currentTime = new Date().toLocaleString();
   // var timeText = document.querySelector("#timeElement");
   // timeText.innerHTML = currentTime
+  
+
+
   document.querySelector("#timeElement").innerHTML = `${time}`
   document.querySelector("#date").innerHTML = `${date}`
+  
 };
 updateTime();
 setInterval(updateTime, 1000);

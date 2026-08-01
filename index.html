@@ -4,7 +4,7 @@
 <head>
   <!-- <link rel="stylesheet" href="style.css"> -->
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="assets/playbutton.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/EpicTabFavicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EpicTab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,14 @@
   <div id="app">
     <p id="timeElement">Time</p>
     <p id="date">Date</p>
+    <!-- <canvas id="timecanvas" width="400" height="200"></canvas> -->
+    <div id="greetingContainer">
+      <p id="greeting"></p>
+      <form id="nameForm">
+        <input id="userName" type="text" placeholder="Name" required>
+      </form>
+      <button id="nameEdit"><img src="assets/editicon.png"></button>
+    </div>
     <form action="https://www.google.com/search" method="GET" id="searchWeb"> <input id="searchIn" style="color: white;"
         type="search" name="q" placeholder="Search Google..." required>
       <!-- <button id="searchBtn" type="submit"><imgSearch</button> --> </form>
