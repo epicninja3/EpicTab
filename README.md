@@ -25,36 +25,36 @@ EpicTab is made with HTML, JS, and CSS
 
 ## Quick Start Guide
 
-# Apod
+### Apod
 Click on "Show Full Caption" to see the picture description, click it again to hide it.
 
-# Timer
+### Timer
 + Enter a value in at least one input field, then click on the triangle to start the timer. 
 + Click on the pause button to pause the timer, and click the triangle to resume. 
 + Click the reset button to reset all values back to 0.
 
-# Bookmarks
+### Bookmarks
 + Click on the "+" button to add a new bookmark
 + Enter the website url and your preferred name for it in the appropriate fields
 + Click "Add" to add the bookmark or "Cancel" to stop making a new bookmark
 + Hover over the bookmark, and click the red trashcan button to delete the bookmark
 + Click on the bookmark to navigate to its respective site.
 
-# Calendar 
+### Calendar 
 Use the "Next" and "Prev" buttons to switch months. Today's date is highlighted in blue
 
-# To-do
+### To-do
 + Click on the "+" button in the top right corner to add a task.
 + Type your task in the field to create the task
 + To edit the task, simply click on it and type again.
 + To delete the task, click on the red trash can on the right of the task.
 + To exit the To-Do application, click the "X" button on the top left.
 
-# Flight Tracker
+### Flight Tracker
 + Enter your flight number, then click the "search" button on the right side of the input field to see the flight information
 + Click the collapse/expand button located on the top right to collapse/expand the information.
 
-# Settings
+### Settings
 The settings button is the gear icon on the bottom-middle of the page, the settings menu will then open up.
 + Background
   + Click on "Customize wallpaper" in the settings menu to change your background
@@ -65,10 +65,10 @@ The settings button is the gear icon on the bottom-middle of the page, the setti
   + Click/Check the checkbox for the application you wish to hide.
   + Uncheck the checkbox to show the application
 
-# Greeting
+### Greeting
 + Hover over the greeting located above the settings button, and click the pencil icon that will appear on the right of the greeting
 + Enter your name or preferred name in the "Name" field and click "Enter" on your keyboard.
 + The name that you added will appear on the greeting.
 
-### Thank you for using EpicTab
+# Thank you for using EpicTab
 
