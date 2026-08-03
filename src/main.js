@@ -1052,115 +1052,143 @@ const preferencesBtn = document.getElementById("preferencesBtn");
 const preferences = document.getElementById("preferences");
 const closepref = document.getElementById("closepref");
 
-//checkboxes....
-// const apodcheck = document.getElementById("apodcheck");
-// const timercheck = document.getElementById("timercheck");
-// const calendarcheck = document.getElementById("calendarcheck");
-// const flightcheck = document.getElementById("flightcheck");
-// const weathercheck = document.getElementById("weathercheck");
-// const todocheck = document.getElementById("todocheck");
+// checkboxes....
+const apodcheck = document.getElementById("apodcheck");
+const timercheck = document.getElementById("timercheck");
+const calendarcheck = document.getElementById("calendarcheck");
+const flightcheck = document.getElementById("flightcheck");
+const weathercheck = document.getElementById("weathercheck");
+const todocheck = document.getElementById("todocheck");
 
-// const apod = document.getElementById("apod");
-// const timer = document.getElementById("timer");
-// const calendar = document.getElementById("calendar");
-// const flightContainer = document.getElementById("flightContainer");
-// const weatherDisplay = document.getElementById("weatherDisplayA");
-// const todoContainer = document.getElementById("todoContainer");
-
-// preferencesBtn.addEventListener('click', function(){
-//   preferences.style.display = "flex";
-//   settingsMenu.style.display = "none";
-// });
-
-// closepref.addEventListener('click', function(){
-//   preferences.style.display = "none";
-//   settingsMenu.style.display = "flex";
-// });
+const apod = document.getElementById("apod");
+const timer = document.getElementById("timer");
+const calendar = document.getElementById("calendar");
+const flightContainer = document.getElementById("flightContainer");
+const weatherDisplay = document.getElementById("weatherdisplayA");
+const todoContainer = document.getElementById("todoContainer");
 
 
-// apodcheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         apod.style.display = "none";  //hide
-//     } else {
-//         apod.style.display = "flex";  //show
-//     }
-// });
+apodcheck.checked = localStorage.getItem("apodcheck") === "true";
+apod.style.display = apodcheck.checked ? "none" : "flex";
 
-// timercheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         timer.style.display = "none";
-//     } else {
-//         timer.style.display = "flex";
-//     }
-// });
+timercheck.checked = localStorage.getItem("timercheck") === "true";
+timer.style.display = timercheck.checked ? "none" : "flex";
 
-// calendarcheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         calendar.style.display = "none";
-//     } else {
-//         calendar.style.display = "flex";
-//     }
-// });
+calendarcheck.checked = localStorage.getItem("calendarcheck") === "true";
+calendar.style.display = calendarcheck.checked ? "none" : "flex";
 
-// flightcheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         flightContainer.style.display = "none";
-//     } else {
-//         flightContainer.style.display = "flex";
-//     }
-// });
+flightcheck.checked = localStorage.getItem("flightcheck") === "true";
+flightContainer.style.display = flightcheck.checked ? "none" : "flex";
 
-// weathercheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         weatherDisplay.style.display = "none";
-//     } else {
-//         weatherDisplay.style.display = "flex";
-//     }
-// });
+weathercheck.checked = localStorage.getItem("weathercheck") === "true";
+weatherDisplay.style.display = weathercheck.checked ? "none" : "flex";
 
-// todocheck.addEventListener('change', (event) => {
-//     if (event.target.checked) {
-//         todoContainer.style.display = "none";
-//     } else {
-//         todoContainer.style.display = "flex";
-//     }
-// });
-const preferencemap = [
-    {checkboxId: "apodcheck", containerId: "apod"},
-    {checkboxId: "timercheck", containerId: "timer"},
-    {checkboxId: "calendarcheck", containerId: "calendar"},
-    {checkboxId: "flightcheck", containerId: "flightContainer"},
-    {checkboxId: "weathercheck", containerId: "weatherDisplayA"},
-    {checkboxId: "todocheck", containerId: "todoContainer"}
-];
+todocheck.checked = localStorage.getItem("todocheck") === "true";
+todoContainer.style.display = todocheck.checked ? "none" : "block";
 
 preferencesBtn.addEventListener('click', function(){
-    preferences.style.display = "flex";
-    settingsMenu.style.display = "none";
+  preferences.style.display = "flex";
+  settingsMenu.style.display = "none";
 });
 
 closepref.addEventListener('click', function(){
-    preferences.style.display = "none";
-    settingsMenu.style.display = "flex";
+  preferences.style.display = "none";
+  settingsMenu.style.display = "flex";
 });
 
-preferencemap.forEach(({ checkboxId, containerId }) => {
-    const checkbox = document.getElementById(checkboxId);
-    const container = document.getElementById(containerId);
 
-    if (!checkbox || !container) return;
-    const ishidden = localStorage.getItem(checkboxId) === "true";
-
-    checkbox.checked = ishidden;
-    container.style.display = ishidden ? "none":"flex";
-
-    checkbox.addEventListener('change', (event) => {
-        const checked = event.target.checked;
-
-        container.style.display = checked ? "none":"flex";
-        localStorage.setItem(checkboxId, checked);
-    });
+apodcheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        apod.style.display = "none";  //hide
+    } else {
+        apod.style.display = "flex";  //show
+    }
+    localStorage.setItem("apodcheck", event.target.checked);
 });
+
+timercheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        timer.style.display = "none";
+    } else {
+        timer.style.display = "flex";
+    }
+    localStorage.setItem("timercheck", event.target.checked);
+
+});
+
+calendarcheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        calendar.style.display = "none";
+    } else {
+        calendar.style.display = "flex";
+    }
+    localStorage.setItem("calendarcheck", event.target.checked);
+});
+
+flightcheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        flightContainer.style.display = "none";
+    } else {
+        flightContainer.style.display = "flex";
+    }
+    localStorage.setItem("flightcheck", event.target.checked);
+});
+
+weathercheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        weatherDisplay.style.display = "none";
+    } else {
+        weatherDisplay.style.display = "flex";
+    }
+    localStorage.setItem("weathercheck", event.target.checked); 
+});
+
+todocheck.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        todoContainer.style.display = "none";
+        // todoScreen.style.display = "none";
+    } else {
+        todoContainer.style.display = "block";
+        // todoScreen.style.display = "block";
+    }
+    localStorage.setItem("todocheck", event.target.checked);
+});
+// const preferencemap = [
+//     {checkboxId: "apodcheck", containerId: "apod"},
+//     {checkboxId: "timercheck", containerId: "timer"},
+//     {checkboxId: "calendarcheck", containerId: "calendar"},
+//     {checkboxId: "flightcheck", containerId: "flightContainer"},
+//     {checkboxId: "weathercheck", containerId: "weatherDisplayA"},
+//     {checkboxId: "todocheck", containerId: "todoContainer"}
+// ];
+
+// preferencesBtn.addEventListener('click', function(){
+//     preferences.style.display = "flex";
+//     settingsMenu.style.display = "none";
+// });
+
+// closepref.addEventListener('click', function(){
+//     preferences.style.display = "none";
+//     settingsMenu.style.display = "flex";
+// });
+
+// preferencemap.forEach(({ checkboxId, containerId }) => {
+//     const checkbox = document.getElementById(checkboxId);
+//     const container = document.getElementById(containerId);
+
+//     if (!checkbox || !container) return;
+//     const ishidden = localStorage.getItem(checkboxId) === "true";
+
+//     checkbox.checked = ishidden;
+//     container.style.display = ishidden ? "none":"flex";
+
+//     checkbox.addEventListener('change', (event) => {
+//         const checked = event.target.checked;
+
+//         container.style.display = checked ? "none":"flex";
+//         localStorage.setItem(checkboxId, checked);
+//     });
+// });
 
 // --------
 // To-Do

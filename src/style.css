@@ -367,6 +367,10 @@ body {
     margin-right: 3px;
     transition: all .25s ease;
 }
+#nameEdit img{
+    width: 20px;
+    height: 20px;
+}
 
 #greetingContainer:hover #nameEdit {
     display: flex;
@@ -1540,10 +1544,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #todoContainer {
     position: absolute;
+    display: block;
     right: 10px;
     bottom: 250px;
     width: 250px;
     height: auto;
+    border: 1px solid white;
 }
 .task{
     display: flex;
@@ -1643,7 +1649,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #todoOpen {
-    float: right;
+    display:block;
     width: 60px;
     height: 50px;
     border: 1px solid rgba(255, 255, 255, 0.2);
