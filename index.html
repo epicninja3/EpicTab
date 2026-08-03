@@ -152,14 +152,71 @@
       <div id="settingsmenu">
         <button id="closemenu" class="closeBtn"><img src="assets/closeicon.png"></button>
         <button id="backgroundBtn">Customize Wallpaper</button>
-
+        <button id="preferencesBtn">Preferences</button>
       </div>
       <div id="backgroundsettings">
         <button id="closebackset" class="backBtn">Back</button>
         <input type="file" id="wallpaperupload" accept="image/*" hidden>
-        <button id="changewallpaper"><svg xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="70px" fill="#000000"><path d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" /></svg></button>
+        <button id="changewallpaper"><svg xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960"
+            width="70px" fill="#000000">
+            <path
+              d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+          </svg></button>
         <p id="uploadtext">Click to upload a file from your computer!</p>
       </div>
+      <div id="preferences">
+        <div id="preferencesCheckbx">
+          <button id="closepref" class="backBtn">Back</button>
+          <div class="prefcontainer">
+            <input id="apodcheck" type="checkbox">
+            <p>Hide APOD</p>
+          </div>
+          
+          <div class="prefcontainer">
+            <input id="timercheck" type="checkbox">
+            <p>Hide Timer</p>
+          </div>
+
+          <div class="prefcontainer">
+            <input id="calendarcheck" type="checkbox">
+            <p>Hide Calendar</p>
+          </div>
+
+          <div class="prefcontainer">
+            <input id="flightcheck" type="checkbox">
+            <p>Hide Flight Tracker</p>
+          </div>
+
+          <div class="prefcontainer">
+            <input id="weathercheck" type="checkbox">
+            <p>Hide Weather</p>
+          </div>
+
+          <div class="prefcontainer">
+            <input id="todocheck" type="checkbox">
+            <p>Hide To-Do</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="todoContainer">
+      <div id="todoScreen">
+        <button id="closeTodo"><img src="assets/closeicon.png"></button>
+        <button id="addTodo">+</button>
+        <div id="tasks">
+          <!-- <div id="task1" class="task">
+            <input type="checkbox">
+            <input type="text" placeholder="Add your task">
+            <button id="deletetask1" class="deletetask"><img src="assets/red-trash-can-icon.png"></button>
+          </div> -->
+        </div>
+
+      </div>
+      <button id="todoOpen"><img src="assets/tasksicon.png"><br>To-Do</button>
+
+
     </div>
 
   </div>

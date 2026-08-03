@@ -129,7 +129,7 @@ function displayGreeting(){
     
     Object.assign(greeting.style, {
       border: "1px solid rgba(255, 255, 255, 0.2)",
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      backgroundColor: "rgba(255, 255, 255, 0.183)",
       boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
       backdropFilter: "blur(10px)",
       borderRadius: "16px",
@@ -996,7 +996,7 @@ const closeMenu = document.getElementById("closemenu");
 openSettings.addEventListener('click', function () {
   settingsMenu.style.display = "flex";
   settingsContainer.style.width = "140px";
-  settingsContainer.style.height = "280px";
+  settingsContainer.style.height = "210px";
 
 });
 
@@ -1014,7 +1014,7 @@ wallpaperBack.addEventListener('click', function () {
   backgroundSettings.style.display = "none";
   settingsMenu.style.display = "flex";
   settingsContainer.style.width = "140px";
-  settingsContainer.style.height = "280px";
+  settingsContainer.style.height = "210px";
 })
 closeMenu.addEventListener('click', function () {
   settingsMenu.style.display = "none";
@@ -1045,6 +1045,262 @@ upload.addEventListener("change", (event) => {
   settingsContainer.style.width = "60px";
   settingsContainer.style.height = "60px";
 });
+
+//Preferences Settings
+
+const preferencesBtn = document.getElementById("preferencesBtn");
+const preferences = document.getElementById("preferences");
+const closepref = document.getElementById("closepref");
+
+//checkboxes....
+// const apodcheck = document.getElementById("apodcheck");
+// const timercheck = document.getElementById("timercheck");
+// const calendarcheck = document.getElementById("calendarcheck");
+// const flightcheck = document.getElementById("flightcheck");
+// const weathercheck = document.getElementById("weathercheck");
+// const todocheck = document.getElementById("todocheck");
+
+// const apod = document.getElementById("apod");
+// const timer = document.getElementById("timer");
+// const calendar = document.getElementById("calendar");
+// const flightContainer = document.getElementById("flightContainer");
+// const weatherDisplay = document.getElementById("weatherDisplayA");
+// const todoContainer = document.getElementById("todoContainer");
+
+// preferencesBtn.addEventListener('click', function(){
+//   preferences.style.display = "flex";
+//   settingsMenu.style.display = "none";
+// });
+
+// closepref.addEventListener('click', function(){
+//   preferences.style.display = "none";
+//   settingsMenu.style.display = "flex";
+// });
+
+
+// apodcheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         apod.style.display = "none";  //hide
+//     } else {
+//         apod.style.display = "flex";  //show
+//     }
+// });
+
+// timercheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         timer.style.display = "none";
+//     } else {
+//         timer.style.display = "flex";
+//     }
+// });
+
+// calendarcheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         calendar.style.display = "none";
+//     } else {
+//         calendar.style.display = "flex";
+//     }
+// });
+
+// flightcheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         flightContainer.style.display = "none";
+//     } else {
+//         flightContainer.style.display = "flex";
+//     }
+// });
+
+// weathercheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         weatherDisplay.style.display = "none";
+//     } else {
+//         weatherDisplay.style.display = "flex";
+//     }
+// });
+
+// todocheck.addEventListener('change', (event) => {
+//     if (event.target.checked) {
+//         todoContainer.style.display = "none";
+//     } else {
+//         todoContainer.style.display = "flex";
+//     }
+// });
+const preferencemap = [
+    {checkboxId: "apodcheck", containerId: "apod"},
+    {checkboxId: "timercheck", containerId: "timer"},
+    {checkboxId: "calendarcheck", containerId: "calendar"},
+    {checkboxId: "flightcheck", containerId: "flightContainer"},
+    {checkboxId: "weathercheck", containerId: "weatherDisplayA"},
+    {checkboxId: "todocheck", containerId: "todoContainer"}
+];
+
+preferencesBtn.addEventListener('click', function(){
+    preferences.style.display = "flex";
+    settingsMenu.style.display = "none";
+});
+
+closepref.addEventListener('click', function(){
+    preferences.style.display = "none";
+    settingsMenu.style.display = "flex";
+});
+
+preferencemap.forEach(({ checkboxId, containerId }) => {
+    const checkbox = document.getElementById(checkboxId);
+    const container = document.getElementById(containerId);
+
+    if (!checkbox || !container) return;
+    const ishidden = localStorage.getItem(checkboxId) === "true";
+
+    checkbox.checked = ishidden;
+    container.style.display = ishidden ? "none":"flex";
+
+    checkbox.addEventListener('change', (event) => {
+        const checked = event.target.checked;
+
+        container.style.display = checked ? "none":"flex";
+        localStorage.setItem(checkboxId, checked);
+    });
+});
+
+// --------
+// To-Do
+// --------
+
+const todoOpen = document.getElementById("todoOpen");
+const todoScreen = document.getElementById("todoScreen");
+const todoAdd = document.getElementById("addTodo");
+const tasks = document.getElementById("tasks");
+const closeTodo = document.getElementById("closeTodo");
+const task1 = document.getElementById("task1")
+const deleteTask1 = document.getElementById("deletetask1");
+// const deleteTask = document.querySelector(".deletetask");
+const taskdiv = document.querySelector(".task");
+
+
+
+
+function saveTasks(){
+  let allTasks = []; //create an array that stores each task
+
+  document.querySelectorAll(".task").forEach(task => { // goes through each task
+    const checkbox = task.querySelector('input[type="checkbox"]'); //sets the checkbox and input text
+    const text = task.querySelector('input[type="text"]');
+
+    allTasks.push({
+      text: text.value, //adds the text value and checkbox value to teh allTasks array
+      completed: checkbox.checked
+    });
+  });
+  
+  localStorage.setItem("alltasks", JSON.stringify(allTasks)); //set in local stroage
+}
+
+function loadTasks(){
+  const savedTasks = JSON.parse(localStorage.getItem("alltasks")); //adds the stored tasks
+
+  if (!savedTasks){
+    return;
+  }
+  
+  savedTasks.forEach(task => {
+      createTask(task.text, task.completed);
+  });
+  
+}
+
+function createTask(text = "", completed = false){
+  const taskdiv = document.createElement('div');
+  taskdiv.className = 'task';
+  
+  const taskcheck = document.createElement('input');
+  taskcheck.type = 'checkbox';
+  taskcheck.checked = completed;
+  
+
+  const taskinput = document.createElement('input');
+  taskinput.type = 'text';
+  taskinput.placeholder = "Add your task";
+  taskinput.value = text;
+  if (completed) {
+    taskinput.style.textDecoration = "line-through";
+  }
+  const deletetask = document.createElement('button');
+  deletetask.className = 'deletetask';
+
+  const deletetaskimg = document.createElement('img');
+  deletetaskimg.src = "assets/red-trash-can-icon.png";
+  deletetaskimg.style.width = "20px";
+  deletetaskimg.style.height = "20px";
+
+  deletetask.appendChild(deletetaskimg);
+
+  taskdiv.appendChild(taskcheck);
+  taskdiv.appendChild(taskinput);
+  taskdiv.appendChild(deletetask);
+  tasks.appendChild(taskdiv);
+  
+  // save when something changes
+  taskinput.addEventListener("input", saveTasks);
+  taskcheck.addEventListener("change", saveTasks);
+
+  
+  // localStorage.setItem("alltasks", JSON.stringify(allTasks));
+ 
+  
+  deletetask.addEventListener('click', function(){
+    taskdiv.remove();
+    saveTasks();
+  });
+  
+  taskcheck.addEventListener('change', (event) =>{
+    if (event.target.checked) {
+      taskinput.style.textDecoration = "line-through";
+    }
+    else {
+      taskinput.style.textDecoration = "none";
+    }
+  });
+};
+
+
+
+
+todoAdd.addEventListener('click', function(){
+  createTask();
+  saveTasks();
+});
+
+todoOpen.addEventListener('click', function(){
+  
+  todoScreen.style.display = "block";
+})
+
+closeTodo.addEventListener('click', function(){
+  todoScreen.style.display = "none";
+});
+
+// deletetask1.addEventListener('click',function(){
+//   task1.remove();
+// });
+
+// taskinput.addEventListener("input", function () {
+
+// });
+
+loadTasks();
+
+
+// todoOpen.addEventListener('click', function(){
+//   todoScreen.style.display = "block";
+// });
+
+
+
+
+
+
+
+
 
 
 

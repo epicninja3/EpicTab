@@ -3,6 +3,7 @@
     inherits: false;
     initial-value: 100%;
 }
+
 .light-text {
     --text-color: white;
 }
@@ -10,6 +11,7 @@
 .dark-text {
     --text-color: black;
 }
+
 #timeElement,
 #date,
 #greeting,
@@ -18,6 +20,7 @@
 #apodtitle,
 #caption,
 #info,
+#flightContainer #header,
 #userName,
 #createBook,
 .searchText,
@@ -107,7 +110,7 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 10px;
-    
+
     gap: 3px;
     transition: all 1s ease-out;
 }
@@ -124,6 +127,7 @@ body {
     /* border: 1px solid #3b82f6;
     border-radius: 6px;
     transition: background 0.2s; */
+
     text-decoration: none;
     justify-content: center;
     align-items: center;
@@ -145,7 +149,7 @@ body {
 .dynamic-bookmark span {
     display: none;
     color: rgb(0, 0, 0);
-    
+
 
 }
 
@@ -153,7 +157,7 @@ body {
     display: flex;
     color: rgb(0, 0, 0);
     filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
-    
+
 
 }
 
@@ -204,7 +208,7 @@ body {
     cursor: pointer;
 
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
 }
@@ -250,14 +254,14 @@ body {
     border-radius: 10px;
     background: rgba(241, 240, 240, 0.447);
     backdrop-filter: blur(10px);
-   
+
     border: none;
     position: relative;
     gap: 8px;
     color: black;
     padding: 3px;
     font-family: "Nunito";
-    
+
 }
 
 .bookBtn::placeholder {
@@ -275,6 +279,7 @@ body {
     display: flex;
     position: absolute;
     justify-content: center;
+    
     left: 50%;
     top: 130px;
     transform: translate(-50%, -50%);
@@ -296,38 +301,41 @@ body {
     filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
 
 }
-#greetingContainer{
+
+#greetingContainer {
     position: absolute;
     display: flex;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     bottom: 100px;
-    
+
     width: auto;
     height: auto;
-    padding: 0 0px;                
-    box-sizing: border-box; 
+    padding: 0 0px;
+    box-sizing: border-box;
     justify-content: space-between;
     /* border: 1px solid; */
-    
+
 }
-#greeting{ 
-    
+
+#greeting {
+
     margin-top: 0px;
     font-size: 25px;
-    text-align: center; 
+    text-align: center;
     font-family: "Nunito";
     transition: all .5s ease-out;
     width: auto;
     height: auto;
-    
+
 }
-#userName{
+
+#userName {
     display: flex;
-    width: 100px;  
+    width: 100px;
     height: 50px;
     margin-left: 7px;
-    margin-top:-25px;
+    margin-top: -25px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -337,15 +345,17 @@ body {
     font-size: 20px;
     transition: all .5s ease-out;
     text-align: center;
-    
+
 }
-#userName::placeholder{
+
+#userName::placeholder {
     color: var(--text-color);
     font-family: "Nunito";
     font-size: 20px;
     text-align: center;
 }
-#nameEdit{
+
+#nameEdit {
     display: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -357,13 +367,18 @@ body {
     margin-right: 3px;
     transition: all .25s ease;
 }
-#greetingContainer:hover #nameEdit{
+
+#greetingContainer:hover #nameEdit {
     display: flex;
 }
 
 /*------------*/
 /* Apod Stuff */
 /*------------*/
+
+#apod{
+    display: flex;
+}
 
 #apoddisplay {
     display: flex;
@@ -382,6 +397,7 @@ body {
     z-index: 5;
 
 }
+
 #apodvideo {
     display: flex;
     flex-direction: column;
@@ -410,7 +426,7 @@ body {
     align-content: center;
     /* justify-content: center; */
     border-radius: 20px;
-    
+
     border: 1px solid black;
     filter: drop-shadow(4px 4px 6px rgb(0, 0, 0));
     /* z-index: 2; */
@@ -420,7 +436,7 @@ body {
     top: 20px;
     left: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     z-index: 1;
@@ -550,7 +566,7 @@ body {
     width: 250px;
     height: 160px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -571,10 +587,15 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
-    background: transparent;
-    background-image: linear-gradient(to bottom,
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+
+    /* background-image: linear-gradient(to bottom,
             rgba(255, 251, 251, 0.537),
-            rgba(57, 53, 53, 0.333));
+            rgba(57, 53, 53, 0.333)); */
     /* opacity: 0.5; */
     /* outline: white; */
     border: 1px solid;
@@ -738,7 +759,7 @@ input[type="number"]::-webkit-inner-spin-button {
     box-sizing: border-box;
     text-align: center;
     font-family: "Nunito";
-    
+
 
     /* justify-items: center; */
 }
@@ -1150,14 +1171,14 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     right: 10px;
     bottom: 15px;
-    
+
     width: 240px;
     height: 220px;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    
+
     backdrop-filter: blur(10px);
     border-radius: 16px;
     transition: all .25s ease;
@@ -1169,7 +1190,7 @@ input[type="number"]::-webkit-inner-spin-button {
     display: grid;
     top: 38px;
     grid-template-columns: repeat(7, 1fr);
-    
+
     text-align: center;
     width: 230px;
     height: 185px;
@@ -1186,8 +1207,8 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     padding: 10px 0px;
     transition: all .25s ease;
-    
-    
+
+
 }
 
 #prev {
@@ -1197,10 +1218,11 @@ input[type="number"]::-webkit-inner-spin-button {
     backdrop-filter: blur(10px);
     cursor: pointer;
     font-size: 14px;
-    font-family: "Nunito"; 
+    font-family: "Nunito";
     margin-left: 3px;
     transition: all .25s ease;
 }
+
 #next {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -1220,36 +1242,36 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .month-year {
-    
+
     text-align: center;
     font-size: 14px;
     font-weight: 800;
     color: rgb(4, 45, 133);
     font-family: "Nunito";
     transition: all .25s ease;
-    
+
 }
 
 
 
 .day-name {
     /* border: 1px solid; */
-    
+
     height: 10px;
     font-size: 13px;
     font-weight: 600;
     color: black;
     font-family: "Nunito";
-    
+
 }
 
 .day {
-    
+
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 5px;
     height: 20px;
-    font-size:15px;
+    font-size: 15px;
     border-radius: 6px;
     width: 20px;
     display: flex;
@@ -1286,23 +1308,23 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Settings */
 /* -------- */
 
-#settings{
-    
+#settings {
+
     /* width: 150px;
     height: 300px; */
     position: absolute;
     width: 60px;
     height: 60px;
-    
-    
+
+
     
     bottom: 5px;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 
 }
 
-#opensettings{
+#opensettings {
     position: absolute;
     display: flex;
     bottom: 0px;
@@ -1318,11 +1340,12 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 50px;
 
 }
-#settingsmenu{
+
+#settingsmenu {
     position: absolute;
     display: none;
     width: 130px;
-    height: 200px;
+    height: 130px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.183);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -1332,12 +1355,14 @@ input[type="number"]::-webkit-inner-spin-button {
     left: 0px;
 
 }
-#closemenu{
+
+#closemenu {
     position: absolute;
     right: 5px;
     top: 5px;
 }
-.closeBtn{
+
+.closeBtn {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.447);
@@ -1349,14 +1374,17 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     transition: all 0.25s ease-out;
 }
-.closeBtn img{
+
+.closeBtn img {
     width: 15px;
     height: 15px;
 }
-.closeBtn:hover{
-    background: rgba(181, 178, 178, 0.881);
+
+.closeBtn:hover {
+    background: rgba(75, 73, 73, 0.187);
 }
-#backgroundBtn{
+
+#backgroundBtn {
     position: absolute;
     width: 80px;
     height: auto;
@@ -1369,16 +1397,17 @@ input[type="number"]::-webkit-inner-spin-button {
     backdrop-filter: blur(10px);
     cursor: pointer;
     font-size: 14px;
-    font-family: "Nunito"; 
-    
+    font-family: "Nunito";
+
     transition: all .25s ease;
 
 }
-#backgroundBtn:hover{
-    background: rgba(181, 178, 178, 0.881);
+
+#backgroundBtn:hover {
+    background: rgba(75, 73, 73, 0.187);
 }
 
-#backgroundsettings{
+#backgroundsettings {
     position: absolute;
     display: none;
     width: 110px;
@@ -1391,9 +1420,10 @@ input[type="number"]::-webkit-inner-spin-button {
     bottom: 70px;
     left: 0px;
     justify-content: center;
-    
-
+    transition: all .25s ease-out;
 }
+
+
 /* #wallpaperupload{
     width: 50px;
     height: 50px;
@@ -1401,7 +1431,7 @@ input[type="number"]::-webkit-inner-spin-button {
     top: 10px;
     left: 10px;
 } */
-#changewallpaper{
+#changewallpaper {
     width: 90px;
     height: 70px;
     position: absolute;
@@ -1411,9 +1441,11 @@ input[type="number"]::-webkit-inner-spin-button {
     background: transparent;
     border: none;
     top: 30px;
-    
+    transition: all .25s ease-out;
 }
-.backBtn{
+
+
+.backBtn {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.447);
@@ -1426,20 +1458,24 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: all 0.25s ease-out;
     font-family: "Nunito";
 }
-#closebackset{
+.backBtn:hover{
+    background: rgba(75, 73, 73, 0.187);
+}
+#closebackset {
     position: absolute;
     top: 5px;
     right: 5px;
 }
 
-#changewallpaper:hover{
+#changewallpaper:hover {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     background: rgba(241, 240, 240, 0.447);
     backdrop-filter: blur(10px);
     cursor: pointer;
 }
-#uploadtext{
+
+#uploadtext {
     position: absolute;
     font-family: "Nunito";
     bottom: -8px;
@@ -1447,6 +1483,181 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: center;
     text-align: center;
 }
+
+#preferencesBtn{
+    position: absolute;
+    width: 90px;
+    height: auto;
+    top: 70px;
+    left: 5px;
+    padding: 5px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Nunito";
+
+    transition: all .25s ease;
+}
+#preferencesBtn:hover{
+    background: rgba(75, 73, 73, 0.187);
+}
+#preferences{
+    position: absolute;
+    display: none;
+    width: 110px;
+    height: 130px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.183);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    bottom: 70px;
+    left: 0px;
+    justify-content: center;
+    padding: 5px;
+    overflow-y: auto;
+    
+}
+.prefcontainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-family: "Nunito";
+    line-height: 1;
+    font-size: 15px;
+}
+#preferencesCheckbx{
+    gap: 0px;
+}
+
+
+/* ----- */
+/* To-do */
+/* ----- */
+
+#todoContainer {
+    position: absolute;
+    right: 10px;
+    bottom: 250px;
+    width: 250px;
+    height: auto;
+}
+.task{
+    display: flex;
+    width: 190px;
+    height: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Nunito";
+    margin-left: 3px;
+    transition: all .25s ease;
+    margin-bottom: 5px;
+    align-items: center;
+
+}
+.task input{
+    background: transparent;
+    align-self: center;
+    border:none;
+    border-radius: 15px;
+    padding: 3px;
+}
+#todoScreen {
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 100%;
+    bottom: 10px;
+    border: 1px solid;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.183);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+}
+
+#tasks {
+    margin-top: 40px;
+}
+
+.deletetask img{
+    width: 20px;
+    height: 20px;
+}
+.deletetask{
+    position: absolute;
+    right: -40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all .25s ease;
+}
+#addTodo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    font-size: 30px;
+    font-family: "Nunito";
+    margin-left: 3px;
+    transition: all .25s ease;
+}
+#closeTodo{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    font-size: 30px;
+    font-family: "Nunito";
+    margin-left: 3px;
+    transition: all .25s ease;  
+}
+
+#todoOpen {
+    float: right;
+    width: 60px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(241, 240, 240, 0.447);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Nunito";
+    margin-left: 3px;
+    transition: all .25s ease;
+
+};
+
 
 
 
